@@ -5,9 +5,10 @@ import Header from "./Header";
 import { Outlet } from "react-router";
 import Footer from "./Footer";
 
+
 export default function PageLayout() {
   const { i18n } = useTranslation();
-  
+
   const [local, setLocal] = useState(localStorage.getItem("i18nextlanguage") || "en");
 
   function changeLanguage(language: string) {
@@ -23,7 +24,7 @@ export default function PageLayout() {
     <>
       <div dir={local === "ar" ? "rtl" : "ltr"}>
         <Banner local={local} changeLanguage={changeLanguage} />
-        <Header />
+        <Header  />
         <Outlet />
         <Footer />
       </div>

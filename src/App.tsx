@@ -3,6 +3,8 @@ import PageLayout from "./components/layout/PageLayout";
 
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
+import SignUp from "./components/pages/auth/SignUp";
 
 function App() {
   return (
@@ -11,7 +13,9 @@ function App() {
         <Routes>
           <Route element={<PageLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/Apout" element={<About />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/Contact" element={<Contact />} />
+            <Route path="/SignUp" element={<SignUp />} />
           </Route>
         </Routes>
       </BrowserRouter>

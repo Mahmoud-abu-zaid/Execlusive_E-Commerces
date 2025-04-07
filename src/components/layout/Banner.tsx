@@ -9,7 +9,7 @@ export default function Banner({ local, changeLanguage }: { local: string; chang
         <div></div>
         <span className="text-[#FAFAFA]">
           {t("Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!")}
-          <Link to="/" className="pl-2 underline">
+          <Link to="/" className="px-2 underline">
             <b>{t("Shop Now")}</b>
           </Link>
         </span>

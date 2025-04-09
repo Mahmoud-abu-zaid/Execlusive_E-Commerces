@@ -24,7 +24,7 @@ export default function PageLayout() {
     <>
       <div dir={local === "ar" ? "rtl" : "ltr"}>
         <Banner local={local} changeLanguage={changeLanguage} />
-        <Header  />
+        <Header  local={local}/>
         <Outlet />
         <Footer />
       </div>

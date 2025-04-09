@@ -6,5 +6,12 @@
   "About": "حول",
   "Contact": "اتصل",
   "Sign Up": "تسجيل",
-  "What are you looking for?": "ماذا تبحث عنه؟"
+  "What are you looking for?": "ماذا تبحث عنه؟",
+  "Manage My Account": "إدارة حسابي",
+  "My Order": "طلباتي",
+  "My Cancellations": "إلغاء الطلبات",
+  "My Reviews": "مراجعاتي",
+  "Logout":"تسجيل الخروج"
+  
+  
 }

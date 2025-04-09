@@ -26,7 +26,11 @@ function App() {
             <Route path="Orders" element={<Orders/>} />
             <Route path="/Cancellations" element={<Home/>} />
             <Route path="/Reviews" element={<Home/>} />
-
+            <Route path="/Wishlist" element={<Home/>} />
+            <Route path="/Shop" element={<Home/>} />
+            <Route path="/Policy" element={<Home/>} />
+            <Route path="/Terms" element={<Home/>} />
+            <Route path="/Faq" element={<Home/>} />
           </Route>
         </Routes>
       </BrowserRouter>

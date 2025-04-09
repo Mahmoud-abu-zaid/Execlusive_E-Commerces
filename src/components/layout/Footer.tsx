@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { VscSend } from "react-icons/vsc";
 import { Link } from "react-router";
 
-export default function Footer() {
+export default function Footer({ local }: { local: string }) {
   const { t } = useTranslation();
   return (
     <>
@@ -12,9 +12,9 @@ export default function Footer() {
             <span className="block text-[24px] py-3">{t("Exclusive")}</span>
             <span className="block text-[20px] py-2">{t("Subscribe")}</span>
             <span className="block text-[16px]">{t("Get 10% off your first order")}</span>
-            <div className="flex items-center my-3 border-2 border-white rounded-md p-2 w-[217px]]">
-              <input className=" outline-0 w-[205px]" type="email" placeholder={t("Enter your email")} />
-              <VscSend className="text-[20px]" />
+            <div className="flex items-center justify-between my-3 border-2 border-white rounded-md p-2 px-3 w-[217px]]">
+              <input className=" outline-0 w-[210px]" type="email" placeholder={t("Enter your email")} />
+              {local === "ar" ? <VscSend className={`text-[20px] scale-x-[-1]`} /> : <VscSend className={`text-[20px]`} />}
             </div>
           </div>
 
@@ -36,7 +36,7 @@ export default function Footer() {
                 <Link to="/Account">{t("My Account")}</Link>
               </li>
               <li className="text-[16px] py-1">
-                <Link to="/SignIn">{t("Login")}</Link> / <Link to="/SignUp">Register</Link>
+                <Link to="/SignIn">{t("Login")}</Link> / <Link to="/SignUp">{t("Register")}</Link>
               </li>
               <li className="text-[16px] py-1">
                 <Link to="/Cart">{t("Cart")}</Link>
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <span className=" block text-[20px] py-3">Quick Link</span>
+            <span className=" block text-[20px] py-3">{t("Quick Link")}</span>
             <ul>
               <li className="text-[16px] py-1">
                 <Link to="/Policy">{t("Privacy Policy")}</Link>
@@ -69,8 +69,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <span className="text-[20px] block py-3">Download App</span>
-            <span className="text-[12px] block">Save $3 with App New User Only</span>
+            <span className="text-[20px] block py-3">{t("Download App")}</span>
+            <span className="text-[12px] block"> {t("Save $3 with App New User Only")}</span>
             <div className="flex items-center mt-3">
               <div>
                 <img className="w-[76px] h-[76px]" src="/images/Qrcode 1.png" alt="" />

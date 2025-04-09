@@ -11,10 +11,24 @@
   "My Order": "طلباتي",
   "My Cancellations": "إلغاء الطلبات",
   "My Reviews": "مراجعاتي",
-  "Logout":"تسجيل الخروج",
+  "Logout": "تسجيل الخروج",
   "Subscribe": "اشترك",
   "Get 10% off your first order": "احصل على خصم 10% على أول طلب لك",
-  "Enter your email": "أدخل بريدك الإلكتروني"
-  
-  
+  "Enter your email": "أدخل بريدك الإلكتروني",
+  "Support": "الدعم",
+  "111 Bijoy sarani, Dhaka,": "111 بيجوي ساراني، دكا،",
+  "DH 1515, Bangladesh.": "بنغلاديش DH 1515.",
+  "Account": "الحساب",
+  "My Account": "حسابي",
+  "Login": "تسجيل الدخول",
+  "Register": "تسجيل",
+  "Cart": "عربة التسوق",
+  "Wishlist": "قائمة الرغبات",
+  "Shop": "تسوق",
+  "Privacy Policy": "سياسة الخصوصية",
+  "Terms Of Use": "شروط الاستخدام",
+  "FAQ": "الأسئلة الشائعة",
+  "Save $3 with App New User Only": "وفر 3 دولارات مع تطبيق المستخدم الجديد فقط",
+"Download App":"تنزيل التطبيق",
+"Quick Link":"رابط سريع"
 }

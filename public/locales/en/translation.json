@@ -5,7 +5,7 @@
   "الرئيسية": "Home",
   "حول": "About",
   "اتصل": "Contact",
-  "تسجيل": "Sign Up",
+  ".تسجيل": "Sign Up",
   "ماذا تبحث عنه؟": "What are you looking for?",
   "إدارة حسابي": "Manage My Account",
   "طلباتي": "My Order",
@@ -14,5 +14,23 @@
   "تسجيل الخروج": "Logout",
   "اشترك": "Subscribe",
   "احصل على خصم 10% على أول طلب لك": "Get 10% off your first order",
-  "أدخل بريدك الإلكتروني": "Enter your email"
+  "أدخل بريدك الإلكتروني": "Enter your email",
+  "الدعم": "Support",
+  "111 بيجوي ساراني، دكا،": "111 Bijoy sarani, Dhaka,", 
+  "بنغلاديش DH 1515.": "DH 1515, Bangladesh.",
+  "الحساب": "Account",
+  "حسابي": "My Account",
+  "تسجيل الدخول": "Login",
+  "تسجيل": "Register",
+  "عربة التسوق": "Cart",
+  "قائمة الرغبات": "Wishlist",
+  "تسوق": "Shop", 
+  "سياسة الخصوصية": "Privacy Policy",
+  "شروط الاستخدام": "Terms Of Use",
+  "الأسئلة الشائعة": "FAQ",
+  "تنزيل التطبيق": "Download App",
+ "رابط سريع":"Quick Link"
+
+  
+
 }

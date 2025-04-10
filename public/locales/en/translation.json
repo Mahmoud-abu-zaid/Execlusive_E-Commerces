@@ -16,7 +16,7 @@
   "احصل على خصم 10% على أول طلب لك": "Get 10% off your first order",
   "أدخل بريدك الإلكتروني": "Enter your email",
   "الدعم": "Support",
-  "111 بيجوي ساراني، دكا،": "111 Bijoy sarani, Dhaka,", 
+  "111 بيجوي ساراني، دكا،": "111 Bijoy sarani, Dhaka,",
   "بنغلاديش DH 1515.": "DH 1515, Bangladesh.",
   "الحساب": "Account",
   "حسابي": "My Account",
@@ -24,13 +24,23 @@
   "تسجيل": "Register",
   "عربة التسوق": "Cart",
   "قائمة الرغبات": "Wishlist",
-  "تسوق": "Shop", 
+  "تسوق": "Shop",
   "سياسة الخصوصية": "Privacy Policy",
   "شروط الاستخدام": "Terms Of Use",
   "الأسئلة الشائعة": "FAQ",
   "تنزيل التطبيق": "Download App",
- "رابط سريع":"Quick Link"
+  "رابط سريع": "Quick Link",
+  "إنشاء حساب": "Create an account",
+  " أدخل تفاصيلك أدناه": "Enter your details below",
+  "اسم": "Name",
+  "البريد الإلكتروني أو رقم الهاتف": "Email or Phone Number",
+  "كلمة المرور": "Password",
 
-  
+  "التسجيل باستخدام جوجل": "Sign up with Google",
+  "هل لديك حساب بالفعل؟": "Already have an account?",
 
+  "نسيت كلمة المرور؟": "Forget Password?",
+  "تسجيل الدخول إلى الحصري": "Log in to Exclusive",
+  ".تسجيل الدخول": "Log In",
+  "تسجيل الدخول إلى حسابك": "Log in to your account"
 }

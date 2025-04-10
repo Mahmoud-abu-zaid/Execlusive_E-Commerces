@@ -21,7 +21,7 @@ export default function SignUp() {
               <input className=" border-b-2 border-[#808080] my-2 p-2 pl-0 outline-0 block w-[100%]" type="email" placeholder={t("Email or Phone Number")} />
             </label>
             <label>
-              <input className="  border-b-2 border-[#808080] my-2 p-2 pl-0 outline-0 block w-[100%]" type="password" placeholder={t("Password")} />
+              <input className="  border-b-2 border-[#808080] my-2 mb-6 p-2 pl-0 outline-0 block w-[100%]" type="password" placeholder={t("Password")} />
             </label>
             <div>
               <button className="text-center bg-[#db4444] w-[100%] text-white p-2 rounded cursor-pointer">{t("Create Account")} </button>
@@ -33,7 +33,7 @@ export default function SignUp() {
             <div className="text-center mt-3">
               <span className="text-[12px] block py-3">
                 {t("Already have an account?")}
-                <Link to="/SignIn" className="text-[#db4444]">
+                <Link to="/SignIn" className="text-[#db4444] mx-2 p-1 text-[12px] border-b-[1px] border-[#db4444] ">
                   {t("Log in")}
                 </Link>
               </span>

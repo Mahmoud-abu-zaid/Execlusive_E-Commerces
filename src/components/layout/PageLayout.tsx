@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Banner from "./Banner";
 import Header from "./Header";
@@ -7,17 +7,24 @@ import Footer from "./Footer";
 
 export default function PageLayout() {
   const { i18n } = useTranslation();
-  const [local, setLocal] = useState(localStorage.getItem("i18nextlanguage") || "en");
-  const direction = local === "ar" ? "rtl" : "ltr";
+  const [local, setLocal] = useState(localStorage.getItem("i18nextLng") || "en");
+  const [direction, setDirection] = useState(localStorage.getItem("pageDirection") || (local === "ar" ? "rtl" : "ltr"));
 
-  function changeLanguage(language: string) {
-    if (language == "ar") {
-      setLocal("ar");
-      i18n.changeLanguage("ar");
-    } else if (language == "en") {
-      setLocal("en");
-      i18n.changeLanguage("en");
-    }
+  // تعيين الاتجاه عند التحميل الأولي
+  useEffect(() => {
+    document.documentElement.dir = direction;
+  }, [direction]);
+
+  function changeLanguage(newLang: string) {
+    const newDirection = newLang === "ar" ? "rtl" : "ltr";
+    
+    setLocal(newLang);
+    setDirection(newDirection);
+    i18n.changeLanguage(newLang);
+    document.documentElement.dir = newDirection;
+    
+    localStorage.setItem("i18nextLng", newLang);
+    localStorage.setItem("pageDirection", newDirection);
   }
   return (
     <>
@@ -30,3 +37,4 @@ export default function PageLayout() {
     </>
   );
 }
+

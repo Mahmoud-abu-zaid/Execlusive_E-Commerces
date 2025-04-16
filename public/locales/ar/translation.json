@@ -43,5 +43,7 @@
   "Forget Password?": "نسيت كلمة المرور؟",
   "Log in to Exclusive": "تسجيل الدخول إلى الحصري",
   "Log In": "تسجيل الدخول",
-  "Account registration successful":"تم تسجيل الحساب بنجاح "
+  "Account registration successful":"تم تسجيل الحساب بنجاح ",
+  "Login successfully":"تم تسجيل الدخول بنجاح",
+  "There is an error. Try again.":"يوجد خطأ. حاول مرة أخرى."
 }

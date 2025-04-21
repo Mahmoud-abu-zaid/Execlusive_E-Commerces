@@ -26,6 +26,12 @@ export default function Header({ local }: { local: string }) {
     toast.success(t("Successfully logged out"));
   }
 
+  /*useEffect(() => {
+    if (localStorage.getItem("userId")) {
+      navigate("/");
+    }
+  }, [navigate]);
+*/
   const showMenustyle = showMenu ? "block" : "hidden";
 
   return (
@@ -79,9 +85,9 @@ export default function Header({ local }: { local: string }) {
 
           {user && (
             <div>
-              <LuUser onClick={() => setShowProfileMenu((state) => !state)} className=" relative cursor-pointer right-0 text-[25px] mx-4 bg-[#db4444] rounded-4xl p-[4px] text-white" />
+              <LuUser onClick={() => setShowProfileMenu((state) => !state)} className=" relative cursor-pointer  right-0 text-[25px] mx-4 bg-[#db4444] rounded-4xl p-[4px] text-white" />
               {showProfileMenu && (
-                <div className={`absolute ${local === "ar" ? "left-[5%]" : "right-[5%]"} w-[200px]  text-white bg-black m-2 p-3 rounded-2xl`}>
+                <div className={`absolute z-10 ${local === "ar" ? "left-[5%]" : "right-[5%]"} w-[200px]  text-white bg-black m-2 p-3 rounded-2xl`}>
                   <ul className="flex flex-col gap-2">
                     <li className="hover:bg-[#db4444] p-2 rounded-md cursor-pointer">
                       <Link to="/Account" className="flex items-center text-[14px] gap-2">

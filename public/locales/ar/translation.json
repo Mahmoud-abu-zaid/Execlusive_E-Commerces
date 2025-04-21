@@ -46,5 +46,14 @@
   "Account registration successful": "تم تسجيل الحساب بنجاح ",
   "Login successfully": "تم تسجيل الدخول بنجاح",
   "There is an error. Try again.": "يوجد خطأ. حاول مرة أخرى.",
-  "Successfully logged out": "تم تسجيل الخروج بنجاح"
+  "Successfully logged out": "تم تسجيل الخروج بنجاح",
+  "Woman’s Fashion": "أزياء المرأة",
+  "Men’s Fashion": "أزياء الرجال",
+  "Electronics": "الإلكترونيات",
+  "Home & Lifestyle": "المنزل ونمط الحياة",
+  "Medicine": "الطب",
+  "Sports & Outdoor": "الرياضة والأنشطة الخارجية",
+  "Baby’s & Toys": "ألعاب الأطفال والألعاب",
+  "Groceries & Pets": "البقالة والحيوانات الأليفة",
+  "Health & Beauty": "الصحة والجمال"
 }

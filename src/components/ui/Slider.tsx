@@ -2,11 +2,11 @@ import { useState } from "react";
 
 export default function Slider() {
   const sliderImg = [
-    { src: "/public/images/Frame 560.png", alt: "slider description" },
-    { src: "/public/images/banner-1.jpg", alt: "slider description" },
-    { src: "/public/images/490325005_23983225067928901_545568897245271027_n.jpg", alt: "slider description" },
-    { src: "/public/images/Computer-and-its-peripherals_header-com.jpg", alt: "slider description" },
-    { src: "/public/images/maxres12.jpg", alt: "slider description" },
+    { src: "/images/Frame 560.png", alt: "slider description" },
+    { src: "/images/banner-1.jpg", alt: "slider description" },
+    { src: "/images/490325005_23983225067928901_545568897245271027_n.jpg", alt: "slider description" },
+    { src: "/images/Computer-and-its-peripherals_header-com.jpg", alt: "slider description" },
+    { src: "/images/maxres12.jpg", alt: "slider description" },
   ];
   const [curruntSlide, setCurruntSlide] = useState(Math.trunc(sliderImg.length / 2));
 

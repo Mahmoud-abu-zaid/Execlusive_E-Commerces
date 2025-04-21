@@ -7,9 +7,9 @@ export default function Slider() {
     { src: "/public/images/490325005_23983225067928901_545568897245271027_n.jpg", alt: "slider description" },
     { src: "/public/images/Computer-and-its-peripherals_header-com.jpg", alt: "slider description" },
     { src: "/public/images/maxres12.jpg", alt: "slider description" },
-    
   ];
-  const [curruntSlide, setCurruntSlide] = useState(Math.trunc(sliderImg.length/2));
+  const [curruntSlide, setCurruntSlide] = useState(Math.trunc(sliderImg.length / 2));
+
   function navigationPoints(index: number) {
     setCurruntSlide(index);
   }

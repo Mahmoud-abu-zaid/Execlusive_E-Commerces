@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-.active-link {
-  border-bottom: 1px solid #000;
-}
-.not-active-link {
-  border-bottom: none;
+@theme {
+  --color-main-color: #db4545;
+
 }

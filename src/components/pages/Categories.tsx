@@ -1,19 +1,23 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BsSmartwatch } from "react-icons/bs";
 import { CiCamera, CiHeadphones, CiMobile3 } from "react-icons/ci";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdOutlineComputer } from "react-icons/md";
 import { PiGameControllerLight } from "react-icons/pi";
 
-const categories = [
-  { icon: <CiMobile3 className="text-4xl" />, label: "Phones" },
-  { icon: <MdOutlineComputer className="text-4xl" />, label: "Computers" },
-  { icon: <BsSmartwatch className="text-4xl" />, label: "SmartWatch" },
-  { icon: <CiCamera className="text-4xl" />, label: "Camera" },
-  { icon: <CiHeadphones className="text-4xl" />, label: "HeadPhones" },
-  { icon: <PiGameControllerLight className="text-4xl" />, label: "Gaming" },
-];
 export default function Categories() {
+  const { t } = useTranslation();
+
+  const categories = [
+    { icon: <CiMobile3 className="text-4xl" />, label: t("Phones") },
+    { icon: <MdOutlineComputer className="text-4xl" />, label: t("Computers") },
+    { icon: <BsSmartwatch className="text-4xl" />, label: t("SmartWatch") },
+    { icon: <CiCamera className="text-4xl" />, label: t("Camera") },
+    { icon: <CiHeadphones className="text-4xl" />, label: t("HeadPhones") },
+    { icon: <PiGameControllerLight className="text-4xl" />, label: t("Gaming") },
+  ];
+
   const [activeCategorie, setActiveCategorie] = useState(categories.length / 2);
   const hendleNext = () => {
     setActiveCategorie((next) => (next + 1) % categories.length);
@@ -21,19 +25,21 @@ export default function Categories() {
   const hendleback = () => {
     setActiveCategorie((back) => (back - 1 + categories.length) % categories.length);
   };
+  const dir = localStorage.getItem("pageDirection");
   return (
     <>
       <section className="px-[40px] pb-5">
         <div className="flex justify-between py-8">
           <div>
-            <h2 className="text-[36px] font-bold">Browse By Category</h2>
+            <h2 className="text-[36px] font-bold">{t("Browse By Category")}</h2>
           </div>
           <div>
-            <button onClick={hendleback} className="bg-gray-300 text-black rounded-[50%] p-3 m-2 cursor-pointer  hover:bg-gray-400 transition">
-              <FaArrowLeft />
+            <button onClick={hendleback} className="bg-gray-300 text-black rounded-full p-3 m-2 cursor-pointer hover:bg-gray-400 transition">
+              <FaArrowLeft className={`transition-transform ${dir === "rtl" ? " rotate-180" : ""}`} />
             </button>
-            <button onClick={hendleNext} className="bg-gray-300 text-black rounded-[50%] p-3 m-2 cursor-pointer  hover:bg-gray-400 transition">
-              <FaArrowRight />
+
+            <button onClick={hendleNext} className="bg-gray-300 text-black rounded-full p-3 m-2 cursor-pointer hover:bg-gray-400 transition">
+              <FaArrowRight className={`transition-transform ${dir === "rtl" ? "rotate-180" : ""}`} />
             </button>
           </div>
         </div>

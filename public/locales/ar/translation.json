@@ -56,9 +56,17 @@
   "Baby’s & Toys": "ألعاب الأطفال والألعاب",
   "Groceries & Pets": "البقالة والحيوانات الأليفة",
   "Health & Beauty": "الصحة والجمال",
-  "Today’s":"اليوم",
-  "Flash Sales":"المبيعات السريعة",
-  "Days":"يوم",
-  "Hours":"ساعة",
-  "Minutes":"دقيقة",
-  "Seconds":"ثانية"}
+  "Today’s": "اليوم",
+  "Flash Sales": "المبيعات السريعة",
+  "Days": "يوم",
+  "Hours": "ساعة",
+  "Minutes": "دقيقة",
+  "Seconds": "ثانية",
+  "Browse By Category": "تصفح حسب الفئة",
+  "Gaming": "الألعاب",
+  "Camera": "كاميرا",
+  "HeadPhones": "سماعات الرأس",
+  "SmartWatch": "ساعة ذكية",
+  "Computers": "كمبيوترات",
+  "Phones": "الهواتف"
+}

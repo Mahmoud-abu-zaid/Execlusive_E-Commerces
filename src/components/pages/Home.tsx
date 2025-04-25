@@ -1,21 +1,41 @@
 {
   /* import BtnLink from "../ui/BtnLink"; */
 }
+{
+  /* import { v4 as uuidv4 } from "uuid";*/
+}
+
 import Count from "../ui/Count";
 import SectionTitle from "../ui/SectionTitle";
 import SideBar from "../ui/SideBar";
 import Slider from "../ui/Slider";
 import { useTranslation } from "react-i18next";
+import Categories from "./Categories";
+
 export default function Home() {
   const { t } = useTranslation();
   return (
     <>
-      <div className="flex justify-center">
-        <SideBar />
-        <Slider />
+      <div className=" padd">
+        <div className="flex justify-center">
+          <SideBar />
+          <Slider />
+        </div>
+        <div>
+          <SectionTitle title={t("Today’s")} />
+          <Count
+            tergetDate={{
+              days: 3,
+              hours: 23,
+              minutes: 19,
+              seconds: 56,
+            }}
+          />
+          <SectionTitle title={t("Categories")} />
+          <Categories />
+        </div>
       </div>
-      <SectionTitle title={t("Today’s")} />
-      <Count />
+
       {/*<BtnLink path="/" title="View All Products" />*/}
     </>
   );

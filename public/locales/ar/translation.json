@@ -63,10 +63,15 @@
   "Minutes": "دقيقة",
   "Seconds": "ثانية",
   "Browse By Category": "تصفح حسب الفئة",
+  "Categories": "الفئات",
   "Gaming": "الألعاب",
   "Camera": "كاميرا",
   "HeadPhones": "سماعات الرأس",
   "SmartWatch": "ساعة ذكية",
   "Computers": "كمبيوترات",
-  "Phones": "الهواتف"
+  "Phones": "الهواتف" ,
+  "Enhance Your":"عزز من",
+  "Music Experience":"تجربة الموسيقى",
+  "Buy Now!":"اشتر الآن!"
+
 }

@@ -9,6 +9,7 @@ import Count from "../ui/Count";
 import SectionTitle from "../ui/SectionTitle";
 import SideBar from "../ui/SideBar";
 import Slider from "../ui/Slider";
+import Benner from "../ui/Benner";
 import { useTranslation } from "react-i18next";
 import Categories from "./Categories";
 
@@ -16,7 +17,7 @@ export default function Home() {
   const { t } = useTranslation();
   return (
     <>
-      <div className=" padd">
+      <div className="">
         <div className="flex justify-center">
           <SideBar />
           <Slider />
@@ -30,9 +31,11 @@ export default function Home() {
               minutes: 19,
               seconds: 56,
             }}
+            storageKey="flashSale1"
           />
           <SectionTitle title={t("Categories")} />
           <Categories />
+          <Benner />
         </div>
       </div>
 

@@ -12,6 +12,7 @@ import Slider from "../ui/Slider";
 import Benner from "../ui/Benner";
 import { useTranslation } from "react-i18next";
 import Categories from "./Categories";
+import ProductsFlashSales from "./ProdectsFlashSales";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -33,6 +34,7 @@ export default function Home() {
             }}
             storageKey="flashSale1"
           />
+          <ProductsFlashSales />
           <SectionTitle title={t("Categories")} />
           <Categories />
           <Benner

@@ -35,7 +35,15 @@ export default function Home() {
           />
           <SectionTitle title={t("Categories")} />
           <Categories />
-          <Benner />
+          <Benner
+            tergetDate={{
+              days: 5,
+              hours: 23,
+              minutes: 59,
+              seconds: 35,
+            }}
+            storageKey="Benner"
+          />
         </div>
       </div>
 

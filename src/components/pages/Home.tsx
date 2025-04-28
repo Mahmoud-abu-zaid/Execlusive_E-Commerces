@@ -5,7 +5,6 @@
   /* import { v4 as uuidv4 } from "uuid";*/
 }
 
-import Count from "../ui/Count";
 import SectionTitle from "../ui/SectionTitle";
 import SideBar from "../ui/SideBar";
 import Slider from "../ui/Slider";
@@ -25,15 +24,6 @@ export default function Home() {
         </div>
         <div>
           <SectionTitle title={t("Today’s")} />
-          <Count
-            tergetDate={{
-              days: 3,
-              hours: 23,
-              minutes: 19,
-              seconds: 56,
-            }}
-            storageKey="flashSale1"
-          />
           <ProductsFlashSales />
           <SectionTitle title={t("Categories")} />
           <Categories />

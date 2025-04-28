@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import StarRating from "../ui/StarRating";
+
 
 export default function ProductsFlashSales() {
   const { t } = useTranslation();
@@ -30,7 +32,7 @@ export default function ProductsFlashSales() {
       priceAfter: "$375",
       priceBefore: "$400",
       PriceReduction: "- 30%",
-      rating: 5,
+      rating: 3,
       Quantity: 99,
     },
     {
@@ -65,11 +67,12 @@ export default function ProductsFlashSales() {
     },
   ];
 
+
   return (
     <>
       <div className="flex justify-center gap-8 overflow-hidden ">
         {FlashSales.map((prodect) => (
-          <div>
+          <div key={prodect.id}>
             <div className="w-[270px] h-[350px]">
               <div className="flex justify-center items-center w-[100%] h-[250px] relative bg-[#F5F5F5] rounded">
                 <img className="w-[172px] h-[152px]" src={prodect.imgProdect} alt="" />
@@ -81,13 +84,13 @@ export default function ProductsFlashSales() {
                 <h3 className="px-2">{prodect.title}</h3>
                 <div>
                   <span className="text-[#DB4444] px-2">{prodect.priceAfter}</span>
-                  <span className="text-[#808080]">
+                  <span className="text-[#808080] px-2">
                     <del>{prodect.priceBefore}</del>
                   </span>
                 </div>
-                <div>
-                  <span className="px-2">{prodect.rating}</span>
-                  <span className="text-[#808080]">{`(${prodect.Quantity})`}</span>
+                <div className="flex gap-3 px-2">
+                  <StarRating rating={prodect.rating} />
+                  <span className="text-[#808080] ">{`(${prodect.Quantity})`}</span>
                 </div>
               </div>
             </div>

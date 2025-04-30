@@ -77,10 +77,14 @@ export default function Header({ local }: { local: string }) {
             <IoSearch />
           </div>
           <div>
-            <FaRegHeart className="mx-4 text-[20px]" />
+            <Link to="/Wishlist">
+              <FaRegHeart className="mx-4 text-[20px]" />
+            </Link>
           </div>
           <div>
-            <MdOutlineShoppingCart className="text-[20px]" />
+            <Link to="/Cart">
+              <MdOutlineShoppingCart className="text-[20px]" />
+            </Link>
           </div>
 
           {user && (

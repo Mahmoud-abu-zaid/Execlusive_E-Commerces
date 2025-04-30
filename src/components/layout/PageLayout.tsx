@@ -32,7 +32,7 @@ export default function PageLayout() {
       <div dir={direction}>
         <Banner local={local} changeLanguage={changeLanguage} />
         <Header local={local} />
-        <Outlet />
+        <Outlet />        
         <Footer local={local} />
       </div>
     </>

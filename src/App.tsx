@@ -9,32 +9,36 @@ import SignIn from "./components/pages/auth/SignIn";
 import Cart from "./components/pages/Cart";
 import Account from "./components/pages/Account";
 import Orders from "./components/pages/Orders";
+import { ShopProvider  } from "./components/Context/context";
+import Wishlist from "./components/pages/WishList";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<PageLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/Contact" element={<Contact />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/SignIn" element={<SignIn />} />
-            <Route path="/Cart" element={<Cart />} />
-            <Route path="/Account" element={<Account />} />
-            <Route path="Orders" element={<Orders/>} />
-            <Route path="/Cancellations" element={<Home/>} />
-            <Route path="/Reviews" element={<Home/>} />
-            <Route path="/Wishlist" element={<Home/>} />
-            <Route path="/Shop" element={<Home/>} />
-            <Route path="/Policy" element={<Home/>} />
-            <Route path="/Terms" element={<Home/>} />
-            <Route path="/Faq" element={<Home/>} />
-            <Route path="/ForgetPassword" element={<SignIn/>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <ShopProvider >
+        <BrowserRouter>
+          <Routes>
+            <Route element={<PageLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/About" element={<About />} />
+              <Route path="/Contact" element={<Contact />} />
+              <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/SignIn" element={<SignIn />} />
+              <Route path="/Cart" element={<Cart />} />
+              <Route path="/Account" element={<Account />} />
+              <Route path="Orders" element={<Orders />} />
+              <Route path="/Cancellations" element={<Home />} />
+              <Route path="/Reviews" element={<Home />} />
+              <Route path="/Wishlist" element={<Wishlist/>} />
+              <Route path="/Shop" element={<Home />} />
+              <Route path="/Policy" element={<Home />} />
+              <Route path="/Terms" element={<Home />} />
+              <Route path="/Faq" element={<Home />} />
+              <Route path="/ForgetPassword" element={<SignIn />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ShopProvider >
     </>
   );
 }

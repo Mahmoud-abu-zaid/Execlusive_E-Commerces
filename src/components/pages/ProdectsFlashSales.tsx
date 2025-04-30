@@ -3,9 +3,12 @@ import StarRating from "../ui/StarRating";
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaRegEye, FaRegHeart } from "react-icons/fa6";
 import Count from "../ui/Count";
-
+import { useShop } from "../Context/context";
+import { toast } from "react-toastify";
 export default function ProductsFlashSales() {
   const { t } = useTranslation();
+
+  const { addToWishlist, isInWishlist, removeFromWishlist, addToCart, removeCart, isCart } = useShop();
 
   const FlashSales = [
     {
@@ -81,6 +84,7 @@ export default function ProductsFlashSales() {
   ];
 
   const [position, setPosition] = useState(0);
+
   const cardWidth = 305;
 
   const dir = localStorage.getItem("pageDirection");
@@ -124,11 +128,39 @@ export default function ProductsFlashSales() {
               <div className="flex justify-center items-center w-full h-[250px] relative bg-[#F5F5F5] rounded">
                 <img className="w-[172px] h-[152px] transition-transform duration-300 " src={prodect.imgProdect} alt={prodect.title} />
 
-                <div className={`absolute h-full  w-full flex flex-col items-end ${dir === "rtl" ? " items-start" : ""} top-2 right-3  opacity-0 hover:opacity-100 duration-300 ease-[0.3s] `}>
-                  <FaRegHeart className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                <div className={`absolute h-full  w-full flex flex-col items-end ${dir === "rtl" ? " items-start" : ""} top-2 right-3  duration-300 ease-[0.3s] `}>
+                  <FaRegHeart
+                    onClick={() => {
+                      if (isInWishlist(prodect.id)) {
+                        removeFromWishlist(prodect.id);
+                        toast.warn(t("Removed from wishlist"));
+                      } else {
+                        addToWishlist(prodect);
+                        toast.success(t("Added to wishlist"));
+                      }
+                    }}
+                    className={`my-2  w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer ${isInWishlist(prodect.id) ? " bg-black text-white" : "bg-white text-black"}`}
+                  />
                   <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
-                  <div className=" absolute bottom-[8px] right-[-12px] left-[12px] bg-black text-white">
-                    <p className="p-2 text-center cursor-pointer">Add to card</p>
+                  <div
+                    className={`absolute bottom-[8px] right-[-12px] left-[12px] bg-black text-white rounded-b-sm ${
+                      isCart(prodect.id) ? "opacity-100" : "opacity-0"
+                    } hover:opacity-100 duration-300 ease-[0.3s]`}
+                  >
+                    <button
+                      onClick={() => {
+                        if (isCart(prodect.id)) {
+                          removeCart(prodect.id);
+                          toast.warn(t("Removed from Cart"));
+                        } else {
+                          addToCart(prodect);
+                          toast.success(t("Added to Cart"));
+                        }
+                      }}
+                      className="p-2 text-center cursor-pointer w-full h-full "
+                    >
+                      {t("Add the card")}
+                    </button>
                   </div>
                 </div>
 

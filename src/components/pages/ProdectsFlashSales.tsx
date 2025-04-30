@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import StarRating from "../ui/StarRating";
 import { useState } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight, FaRegEye, FaRegHeart } from "react-icons/fa6";
 import Count from "../ui/Count";
 
 export default function ProductsFlashSales() {
@@ -40,7 +40,7 @@ export default function ProductsFlashSales() {
     },
     {
       id: 4,
-      title: t("IPS LCD Gaming Monitor"),
+      title: t("S-Series Comfort Chair "),
       imgProdect: "/images/sam-moghadam-khamseh-kvmdsTrGOBM-unsplash 1.png",
       priceAfter: "$375",
       priceBefore: "$400",
@@ -83,6 +83,8 @@ export default function ProductsFlashSales() {
   const [position, setPosition] = useState(0);
   const cardWidth = 305;
 
+  const dir = localStorage.getItem("pageDirection");
+
   const handleNext = () => {
     const maxTranslate = FlashSales.length * cardWidth - window.innerWidth;
     setPosition((prev) => Math.max(prev - cardWidth, -maxTranslate));
@@ -91,8 +93,6 @@ export default function ProductsFlashSales() {
   const handleBack = () => {
     setPosition((prev) => Math.min(prev + cardWidth, 0));
   };
-
-  const dir = localStorage.getItem("pageDirection");
 
   return (
     <>
@@ -107,22 +107,31 @@ export default function ProductsFlashSales() {
           storageKey="flashSale1"
         />
         <div className="flex gap-3">
-          <button onClick={handleBack} className="bg-gray-300 text-black rounded-full p-3 cursor-pointer hover:bg-gray-400 transition">
+          <button onClick={dir === "rtl" ? handleNext : handleBack} className="bg-gray-300 text-black rounded-full p-3 cursor-pointer hover:bg-gray-400 transition">
             <FaArrowLeft className={`transition-transform ${dir === "rtl" ? "rotate-180" : ""}`} />
           </button>
 
-          <button onClick={handleNext} className="bg-gray-300 text-black rounded-full p-3 cursor-pointer hover:bg-gray-400 transition">
+          <button onClick={dir === "rtl" ? handleBack : handleNext} className="bg-gray-300 text-black rounded-full p-3 cursor-pointer hover:bg-gray-400 transition">
             <FaArrowRight className={`transition-transform ${dir === "rtl" ? "rotate-180" : ""}`} />
           </button>
         </div>
       </div>
 
       <div className="overflow-hidden px-4">
-        <div className="flex gap-8 transition-transform duration-500" style={{ transform: `translateX(${position}px)` }}>
+        <div className={`flex gap-8 transition-transform duration-500 ease-in-out ${dir === "rtl" ? "flex-row-reverse" : ""}`} style={{ transform: `translateX(${position}px)` }}>
           {FlashSales.map((prodect) => (
             <div key={prodect.id} className="w-[270px] flex-shrink-0 h-[350px]">
               <div className="flex justify-center items-center w-full h-[250px] relative bg-[#F5F5F5] rounded">
-                <img className="w-[172px] h-[152px] transition-transform duration-300 hover:scale-110" src={prodect.imgProdect} alt={prodect.title} />
+                <img className="w-[172px] h-[152px] transition-transform duration-300 " src={prodect.imgProdect} alt={prodect.title} />
+
+                <div className={`absolute h-full  w-full flex flex-col items-end ${dir === "rtl" ? " items-start" : ""} top-2 right-3  opacity-0 hover:opacity-100 duration-300 ease-[0.3s] `}>
+                  <FaRegHeart className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                  <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                  <div className=" absolute bottom-[8px] right-[-12px] left-[12px] bg-black text-white">
+                    <p className="p-2 text-center cursor-pointer">Add to card</p>
+                  </div>
+                </div>
+
                 <div>
                   <p className="absolute top-2 left-3 bg-[#DB4444] px-4 py-2 rounded-md text-[12px] text-white">{prodect.PriceReduction}</p>
                 </div>

@@ -9,6 +9,7 @@ import { RiShoppingBag3Line } from "react-icons/ri";
 import { FaRegHeart, FaRegStar } from "react-icons/fa";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { toast } from "react-toastify";
+import { useShop } from "../Context/context";
 export default function Header({ local }: { local: string }) {
   const { t } = useTranslation();
 
@@ -19,6 +20,8 @@ export default function Header({ local }: { local: string }) {
   const [showMenu, setShowMenu] = useState(false);
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  const { wishlist } = useShop();
 
   function logout() {
     localStorage.removeItem("userId");
@@ -77,13 +80,17 @@ export default function Header({ local }: { local: string }) {
             <IoSearch />
           </div>
           <div>
-            <Link to="/Wishlist">
-              <FaRegHeart className="mx-4 text-[20px]" />
+            <Link to="/Wishlist"className="relative" >
+              <FaRegHeart className="mx-4 text-[20px] " />
+              <div> 
+                <p className=" absolute top-[-10px] right-[5px] bg-main-color text-white text-[14px] p-[6px] rounded-4xl w-5 h-5 flex items-center justify-center">{wishlist.length}</p>
+              </div>
             </Link>
           </div>
           <div>
             <Link to="/Cart">
               <MdOutlineShoppingCart className="text-[20px]" />
+              
             </Link>
           </div>
 

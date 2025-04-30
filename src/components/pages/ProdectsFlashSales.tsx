@@ -126,7 +126,7 @@ export default function ProductsFlashSales() {
           {FlashSales.map((prodect) => (
             <div key={prodect.id} className="w-[270px] flex-shrink-0 h-[350px]">
               <div className="flex justify-center items-center w-full h-[250px] relative bg-[#F5F5F5] rounded">
-                <img className="w-[172px] h-[152px] transition-transform duration-300 " src={prodect.imgProdect} alt={prodect.title} />
+                <img  src={prodect.imgProdect} alt={prodect.title} />
 
                 <div className={`absolute h-full  w-full flex flex-col items-end ${dir === "rtl" ? " items-start" : ""} top-2 right-3  duration-300 ease-[0.3s] `}>
                   <FaRegHeart

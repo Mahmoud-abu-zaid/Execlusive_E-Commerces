@@ -186,7 +186,7 @@ export default function ProductsFlashSales() {
           ))}
         </div>
         <div className="py-15 text-center">
-        <BtnLink path="/"  title="View All Products" />
+        <BtnLink path="/"  title={t("View All Products")} />
         </div>
       </div>
     </>

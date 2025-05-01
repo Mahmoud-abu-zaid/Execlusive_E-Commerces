@@ -40,7 +40,7 @@ export default function ExploreOurProducts() {
     },
     {
       id: 14,
-      title: t("Curology Product Set "),
+      title: t("Curology Product Set"),
       imgProdect: "/images/Curology_Product_Set.png",
       priceAfter: "$360",
       priceBefore: "",
@@ -90,7 +90,7 @@ export default function ExploreOurProducts() {
     },
     {
       id: 19,
-      title: t("Breed Dry Dog Food"),
+      title: t("The north coat"),
       imgProdect: "/images/shirt.png",
       priceAfter: "$260",
       priceBefore: "",
@@ -100,7 +100,7 @@ export default function ExploreOurProducts() {
     },
     {
       id: 20,
-      title: t("CANON EOS DSLR Camera"),
+      title: t("Gucci duffle bag"),
       imgProdect: "images/bag.png",
       priceAfter: "$960",
       priceBefore: "",
@@ -110,7 +110,7 @@ export default function ExploreOurProducts() {
     },
     {
       id: 21,
-      title: t("ASUS FHD Gaming Laptop"),
+      title: t("RGB liquid CPU Cooler"),
       imgProdect: "/images/graphics_card.png",
       priceAfter: "$260",
       priceBefore: "",
@@ -120,7 +120,7 @@ export default function ExploreOurProducts() {
     },
     {
       id: 22,
-      title: t("Curology Product Set "),
+      title: t("Small BookSelf"),
       imgProdect: "/images/small_bookself.png",
       priceAfter: "",
       priceBefore: "",
@@ -160,7 +160,7 @@ export default function ExploreOurProducts() {
     },
     {
       id: 26,
-      title: t("Curology Product Set "),
+      title: t("Curology Product Set"),
       imgProdect: "/images/Curology_Product_Set.png",
       priceAfter: "$360",
       priceBefore: "",
@@ -190,7 +190,7 @@ export default function ExploreOurProducts() {
     <>
       <div className="px-[40px]">
         <div className="flex justify-between items-center ">
-          <h2 className="text-[36px] font-bold">Best Selling Products</h2>
+          <h2 className="text-[36px] font-bold">{t("Explore Our Products")}</h2>
           <div>
             <div className="flex gap-3">
               <button onClick={dir === "rtl" ? handleNext : handleBack} className="bg-gray-300 text-black rounded-full p-3 cursor-pointer hover:bg-gray-400 transition">

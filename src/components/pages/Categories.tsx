@@ -28,7 +28,7 @@ export default function Categories() {
   const dir = localStorage.getItem("pageDirection");
   return (
     <>
-      <section className="px-[40px] pb-5">
+      <section className="px-[40px]  pb-[50px]">
         <div className="flex justify-between py-8">
           <div>
             <h2 className="text-[36px] font-bold">{t("Browse By Category")}</h2>

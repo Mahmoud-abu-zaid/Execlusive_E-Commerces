@@ -12,6 +12,8 @@ import Benner from "../ui/Benner";
 import { useTranslation } from "react-i18next";
 import Categories from "./Categories";
 import ProductsFlashSales from "./ProdectsFlashSales";
+import BestSelling from "./BestSelling";
+
 
 export default function Home() {
   const { t } = useTranslation();
@@ -26,7 +28,10 @@ export default function Home() {
           <SectionTitle title={t("Today’s")} />
           <ProductsFlashSales />
           <SectionTitle title={t("Categories")} />
+
           <Categories />
+          <SectionTitle title={t("This Month")} />
+          <BestSelling />
           <Benner
             tergetDate={{
               days: 5,
@@ -39,7 +44,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/*<BtnLink path="/" title="View All Products" />*/}
     </>
   );
 }

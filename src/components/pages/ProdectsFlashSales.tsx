@@ -1,10 +1,11 @@
-import { useTranslation } from "react-i18next";
-import StarRating from "../ui/StarRating";
-import { useState } from "react";
-import { FaArrowLeft, FaArrowRight, FaRegEye, FaRegHeart } from "react-icons/fa6";
 import Count from "../ui/Count";
-import { useShop } from "../Context/context";
+import { useState } from "react";
+import BtnLink from "../ui/BtnLink";
 import { toast } from "react-toastify";
+import StarRating from "../ui/StarRating";
+import { useShop } from "../Context/context";
+import { useTranslation } from "react-i18next";
+import { FaArrowLeft, FaArrowRight, FaRegEye, FaRegHeart } from "react-icons/fa6";
 export default function ProductsFlashSales() {
   const { t } = useTranslation();
 
@@ -183,6 +184,9 @@ export default function ProductsFlashSales() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="py-15 text-center">
+        <BtnLink path="/"  title="View All Products" />
         </div>
       </div>
     </>

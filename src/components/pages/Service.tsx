@@ -8,9 +8,9 @@ export default function Services() {
   useEffect(() => {
     const interval = setInterval(() => {
       setVisible((prev) => !prev);
-    }, 1000); 
+    }, 1000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, []);
 
   return (

@@ -15,7 +15,7 @@ import ProductsFlashSales from "./ProdectsFlashSales";
 import BestSelling from "./BestSelling";
 import ExploreOurProducts from "./ExploreOurProducts";
 import Featured from "./Featured";
-import Services from "./services";
+import Services from "./Service";
 
 export default function Home() {
   const { t } = useTranslation();

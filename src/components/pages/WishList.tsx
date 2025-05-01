@@ -5,16 +5,31 @@ import { RiDeleteBin4Line } from "react-icons/ri";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function WishlistPage() {
-  const { wishlist, removeFromWishlist, addToCart, removeCart, isCart } = useShop();
+  const { wishlist, removeFromWishlist, clearWishlist, addToCart, removeCart, isCart } = useShop();
   const { t } = useTranslation();
+
   return (
     <div className="p-6 py-14 px-7">
       <div className="flex justify-between items-center pb-12 ">
         <div>
-          <h2 className="text-xl font-bold">{t("Wishlist")} ({wishlist.length})</h2>
+          <h2 className="text-xl font-bold">
+            {t("Wishlist")} ({wishlist.length})
+          </h2>
         </div>
         <div>
-          <button className="font-bold py-3 px-6 border-2 border-[#808080] rounded text-[16px] cursor-pointer">{t("Move All To Bag")}</button>
+          <button
+            onClick={() => {
+              if (wishlist.length === 0) {
+                toast.error(t("No Wish List"));
+              } else {
+                clearWishlist();
+                toast.warn(t("Removed All wishlist"));
+              }
+            }}
+            className="font-bold py-3 px-6 border-2 border-[#808080] rounded text-[16px] cursor-pointer"
+          >
+            {t("Move All To Bag")}
+          </button>
         </div>
       </div>
       {wishlist.length === 0 ? (

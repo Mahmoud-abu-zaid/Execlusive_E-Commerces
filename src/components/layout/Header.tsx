@@ -21,7 +21,7 @@ export default function Header({ local }: { local: string }) {
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-  const { wishlist } = useShop();
+  const { wishlist, cart } = useShop();
 
   function logout() {
     localStorage.removeItem("userId");
@@ -39,7 +39,7 @@ export default function Header({ local }: { local: string }) {
 
   return (
     <>
-      <div className="flex justify-around lg:justify-evenly items-center h-[81px] border-b-[#d0d0d0] border-b-[1px]">
+      <div className="flex justify-around lg:justify-evenly items-center h-[81px] border-b-[#d0d0d0] border-b-[1px]  bg-white z-15">
         <div>
           <Link to="/" className="text-[24px]">
             {t("Exclusive")}
@@ -48,7 +48,7 @@ export default function Header({ local }: { local: string }) {
 
         <div>
           <IoMenu onClick={() => setShowMenu((state) => !state)} className="lg:hidden text-[30px] cursor-pointer" />
-          <ul className={`${showMenustyle} lg:flex lg:items-center lg:static absolute lg:bg-white bg-black rounded-xl lg:w-fit text-white p-2 bl `}>
+          <ul className={`${showMenustyle} lg:flex lg:items-center lg:static absolute lg:bg-white bg-black rounded-xl lg:w-fit text-white p-2 z-10`}>
             <li className="my-2 lg:my-0  lg:hover:bg-none">
               <NavLink className={({ isActive }) => `mx-4 text-white lg:text-black  pb-[3px]  ${isActive ? "border-b-2 border-white lg:border-black" : "border-none"} `} to="/">
                 {t("Home")}
@@ -80,17 +80,31 @@ export default function Header({ local }: { local: string }) {
             <IoSearch />
           </div>
           <div>
-            <Link to="/Wishlist"className="relative" >
+            <Link to="/Wishlist" className="relative">
               <FaRegHeart className="mx-4 text-[20px] " />
-              <div> 
-                <p className=" absolute top-[-10px] right-[5px] bg-main-color text-white text-[14px] p-[6px] rounded-4xl w-5 h-5 flex items-center justify-center">{wishlist.length}</p>
+              <div>
+                <p
+                  className={` absolute top-[-10px] right-[5px] bg-main-color text-white text-[14px] p-[6px] rounded-4xl w-5 h-5 flex items-center justify-center duration-300 ease-in-out ${
+                    wishlist.length === 0 ? "hidden" : "block"
+                  }`}
+                >
+                  {wishlist.length}
+                </p>
               </div>
             </Link>
           </div>
           <div>
-            <Link to="/Cart">
+            <Link to="/Cart" className="relative">
               <MdOutlineShoppingCart className="text-[20px]" />
-              
+              <div>
+                <p
+                  className={` absolute top-[-10px] right-[-9px] bg-main-color text-white text-[14px] p-[6px] rounded-4xl w-5 h-5 flex items-center justify-center duration-300 ease-in-out ${
+                    cart.length === 0 ? "hidden" : "block"
+                  }`}
+                >
+                  {cart.length}
+                </p>
+              </div>
             </Link>
           </div>
 

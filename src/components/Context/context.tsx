@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, ReactNode, useContext } from "react";
 
-// نوع المنتج
+
 export interface Product {
   id: number;
   title: string;
@@ -16,6 +16,7 @@ interface ShopContextType {
   wishlist: Product[];
   addToWishlist: (product: Product) => void;
   removeFromWishlist: (productId: number) => void;
+  clearWishlist: () => void;
   isInWishlist: (productId: number) => boolean;
   cart: Product[];
   addToCart: (product: Product) => void;
@@ -27,6 +28,7 @@ export const ShopContext = createContext<ShopContextType>({
   wishlist: [],
   addToWishlist: () => {},
   removeFromWishlist: () => {},
+  clearWishlist:()=>{},
   isInWishlist: () => false,
   cart: [],
   addToCart: () => {},
@@ -43,7 +45,6 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   const [wishlist, setWishlist] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
 
-  // استرجاع wishlist من localStorage
   useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
     if (storedWishlist) {
@@ -56,7 +57,7 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   }, []);
 
-  // wishlist functions
+
   const addToWishlist = (product: Product) => {
     const updated = [...wishlist, product];
     setWishlist(updated);
@@ -73,8 +74,11 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   const isInWishlist = (productId: number) => {
     return wishlist.some((item) => item.id === productId);
   };
+  const clearWishlist = () => {
+    setWishlist([]);
+    localStorage.removeItem("wishlist");
+  };
 
-  // cart functions
   const addToCart = (product: Product) => {
     const updated = [...cart, product];
     setCart(updated);
@@ -96,6 +100,7 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
         wishlist,
         addToWishlist,
         removeFromWishlist,
+        clearWishlist,
         isInWishlist,
         cart,
         addToCart,

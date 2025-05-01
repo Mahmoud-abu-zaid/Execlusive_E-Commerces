@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import Categories from "./Categories";
 import ProductsFlashSales from "./ProdectsFlashSales";
 import BestSelling from "./BestSelling";
-
+import ExploreOurProducts from "./ExploreOurProducts";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -41,9 +41,9 @@ export default function Home() {
             }}
             storageKey="Benner"
           />
+          <ExploreOurProducts />
         </div>
       </div>
-
     </>
   );
 }

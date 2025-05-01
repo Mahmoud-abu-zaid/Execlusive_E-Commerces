@@ -108,7 +108,7 @@ export default function BestSelling() {
                 <h3 className="px-2 mb-1">{prodect.title}</h3>
                 <div className="flex items-center px-2 mb-1">
                   <span className="text-[#DB4444]">{prodect.priceAfter}</span>
-                  <span className="text-[#808080] ml-2">
+                  <span className="text-[#808080] mx-2">
                     <del>{prodect.priceBefore}</del>
                   </span>
                 </div>

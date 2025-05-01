@@ -7,6 +7,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist, clearWishlist, addToCart, removeCart, isCart } = useShop();
   const { t } = useTranslation();
+  const dir = localStorage.getItem("pageDirection");
 
   return (
     <div className="p-6 py-14 px-7">
@@ -58,7 +59,9 @@ export default function WishlistPage() {
                         toast.success(t("Added to Cart"));
                       }
                     }}
-                    className={`flex justify-center items-center absolute bottom-4 right-0 left-[8px] bg-black text-white p-2 w-full rounded-b-md text-center ${isCart(prodect.id) ? " hidden " : ""}`}
+                    className={`flex justify-center items-center absolute bottom-4  bg-black text-white p-2 w-full rounded-b-md text-center
+                      ${isCart(prodect.id) ? " hidden " : ""}
+                      ${dir === "rtl" ? "right-[-8px]" : "left-[8px]"}`}
                   >
                     <AiOutlineShoppingCart className=" text-white mx-3" />
                     <p>Add to Cart</p>

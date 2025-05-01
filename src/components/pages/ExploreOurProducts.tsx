@@ -4,6 +4,7 @@ import { useShop } from "../Context/context";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight, FaRegEye, FaRegHeart } from "react-icons/fa6";
 import { useState } from "react";
+import BtnLink from "../ui/BtnLink";
 
 export default function ExploreOurProducts() {
   const { t } = useTranslation();
@@ -257,6 +258,9 @@ export default function ExploreOurProducts() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="pb-10 text-center">
+        <BtnLink path="/" title={t("View All Products")} />
       </div>
     </>
   );

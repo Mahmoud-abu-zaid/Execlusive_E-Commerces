@@ -73,7 +73,7 @@ export default function Count({ tergetDate, storageKey }: CountProps) {
 
   return (
     <div className="flex justify-between">
-      <div className="flex justify-around m-5">
+      <div className="flex justify-around my-5">
         <div>
           <h2 className="m-6 text-[36px]">
             <b>{t("Flash Sales")}</b>

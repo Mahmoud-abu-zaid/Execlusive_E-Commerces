@@ -57,11 +57,11 @@ export default function BestSelling() {
   return (
     <>
       <div className="px-[40px]">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center ">
           <h2 className="text-[36px] font-bold">{t("Best Selling Products")}</h2>
           <BtnLink path="/" title={t("View All Products")} />
         </div>
-        <div className="flex justify-center items-center gap-7 py-15">
+        <div className="flex justify-center items-center flex-wrap gap-7 py-15">
           {BestSellingProdects.map((prodect) => (
             <div key={prodect.id} className="w-[270px] flex-shrink-0 h-[350px]">
               <div className="flex justify-center items-center w-full h-[250px] relative bg-[#F5F5F5] rounded">

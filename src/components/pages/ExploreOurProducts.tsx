@@ -72,7 +72,7 @@ export default function ExploreOurProducts() {
     {
       id: 17,
       title: t("GP11 Shooter USB Gamepad"),
-      imgProdect: "/public/images/PlayStation_arm_2.png",
+      imgProdect: "/images/PlayStation_arm_2.png",
       priceAfter: "$260",
       priceBefore: "",
       PriceReduction: "- 40%",
@@ -82,7 +82,7 @@ export default function ExploreOurProducts() {
     {
       id: 18,
       title: t("Quilted Satin Jacket"),
-      imgProdect: "/public/images/jacket.png",
+      imgProdect: "/images/jacket.png",
       priceAfter: "$360",
       priceBefore: "",
       PriceReduction: "- 40%",

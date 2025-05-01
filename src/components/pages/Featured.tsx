@@ -11,7 +11,7 @@ export default function Featured() {
         <div className=" flex justify-center flex-wrap gap-3">
           <div>
             <div className="bg-black relative w-fit px-6 pt-18 rounded">
-              <img src="/public/images/playstation.png" alt="" />
+              <img src="/images/playstation.png" alt="" />
               <div className=" absolute text-white bottom-8 ">
                 <h3 className="text-[24px] py-4 font-bold">{t("PlayStation 5")}</h3>
                 <p>
@@ -24,7 +24,7 @@ export default function Featured() {
 
           <div>
             <div className="relative mb-4 bg-[#0D0D0D] rounded flex justify-end">
-              <img className="rounded" src="/public/images/attractive-woman-wearing-hat-posing-black-background 1.png" alt="" />
+              <img className="rounded" src="/images/attractive-woman-wearing-hat-posing-black-background 1.png" alt="" />
               <div className=" absolute text-white bottom-2 left-6 right-6">
                 <h3 className="text-[24px] py-4 font-bold">{t("Women’s Collections")}</h3>
                 <p>
@@ -36,7 +36,7 @@ export default function Featured() {
             <div className="flex justify-center flex-wrap gap-4">
               <div className="relative flex justify-center bg-[#0D0D0D] md:w-fit w-full rounded">
                 <div className="flex items-center justify-center w-[270px] h-[284px]">
-                  <img src="/public/images/speakers.png" alt="" />
+                  <img src="/images/speakers.png" alt="" />
                 </div>
                 <div className=" absolute bottom-0 text-white left-6 right-6">
                   <h3 className="text-[24px] py-2 font-bold">{t("Speakers")}</h3>

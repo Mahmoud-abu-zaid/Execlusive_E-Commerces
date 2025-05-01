@@ -15,6 +15,7 @@ import ProductsFlashSales from "./ProdectsFlashSales";
 import BestSelling from "./BestSelling";
 import ExploreOurProducts from "./ExploreOurProducts";
 import Featured from "./Featured";
+import Services from "./services";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -45,6 +46,7 @@ export default function Home() {
           <ExploreOurProducts />
           <SectionTitle title={t("Featured")} />
           <Featured />
+          <Services />
         </div>
       </div>
     </>

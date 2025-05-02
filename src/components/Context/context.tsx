@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState, ReactNode, useContext } from "react";
 
-
 export interface Product {
   id: number;
   title: string;
@@ -22,18 +21,24 @@ interface ShopContextType {
   addToCart: (product: Product) => void;
   removeCart: (productId: number) => void;
   isCart: (productId: number) => boolean;
+  quantities: { [key: number]: number };
+  updateQuantity: (id: number, qty: number) => void;
+  subtotal: number;
 }
 
 export const ShopContext = createContext<ShopContextType>({
   wishlist: [],
   addToWishlist: () => {},
   removeFromWishlist: () => {},
-  clearWishlist:()=>{},
+  clearWishlist: () => {},
   isInWishlist: () => false,
   cart: [],
   addToCart: () => {},
   removeCart: () => {},
   isCart: () => false,
+  quantities: {},
+  updateQuantity: () => {},
+  subtotal: 0,
 });
 export const useShop = () => useContext(ShopContext);
 
@@ -57,12 +62,10 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   }, []);
 
-
   const addToWishlist = (product: Product) => {
     const updated = [...wishlist, product];
     setWishlist(updated);
     localStorage.setItem("wishlist", JSON.stringify(updated));
-    
   };
 
   const removeFromWishlist = (productId: number) => {
@@ -92,8 +95,24 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const isCart = (productId: number) => {
-    return cart.some((item) => item.id === productId); 
+    return cart.some((item) => item.id === productId);
   };
+
+  const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+
+  const updateQuantity = (id: number, qty: number) => {
+    setQuantities((prev) => ({
+      ...prev,
+      [id]: qty,
+    }));
+  };
+
+  const subtotal = cart.reduce((sum, item) => {
+    const quantity = quantities[item.id] || 1;
+    const price = parseFloat(item.priceAfter.replace("$", "")) || 0;
+    return sum + quantity * price;
+  }, 0);
+
   return (
     <ShopContext.Provider
       value={{
@@ -106,6 +125,9 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
         addToCart,
         removeCart,
         isCart,
+        quantities,
+        updateQuantity,
+        subtotal,
       }}
     >
       {children}

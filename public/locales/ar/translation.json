@@ -130,5 +130,18 @@
   "Product": "المنتج",
   "Price": "السعر",
   "Quantity": "الكمية",
-  "Free": "مجاناً"
+  "Free": "مجاناً",
+  "Place Order": " تقديم الطلب",
+  "Cash on delivery": "الدفع عند الاستلام",
+  "Bank": " البنك",
+  "CheckOut": " تسجيل ",
+  "View Cart": " عرض عربة التسوق",
+  "Billing Details": " تفاصيل الفواتير",
+  "First Name": " الاسم الأول",
+  "Company Name": " اسم الشركة",
+  "Street Address": " عنوان الشارع",
+  "Apartment, floor, etc. (optional)": " الشقة، الطابق، إلخ (اختياري)",
+  "Town/City": "  المدينة/المدينة",
+  "Phone Number": " رقم الهاتف",
+  "Email Address": " عنوان البريد الإلكتروني"
 }

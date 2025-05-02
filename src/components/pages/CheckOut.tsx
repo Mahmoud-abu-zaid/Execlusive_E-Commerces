@@ -33,44 +33,45 @@ export default function CheckOut() {
           <Link to="/Cart"> {t("CheckOut")}</Link>
         </div>
         <form>
-          <h2 className="text-2xl py-5">Billing Details</h2>
+          <h2 className="text-2xl py-5">{t("Billing Details")}</h2>
           <div className="flex justify-around flex-wrap gap-7">
             <div className="w-[100%] md:w-[50%]">
               <div className="">
                 <label className=" block p-2 px-0 text-[#999999]">
-                  First Name<span className="text-red-500 px-2">*</span>
+                  {t("First Name")} <span className="text-red-500 px-2">*</span>
                 </label>
                 <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
-                <label className=" block p-2 px-0 text-[#999999]">Company Name</label>
+                <label className=" block p-2 px-0 text-[#999999]">{t("Company Name")} </label>
                 <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
-                  Street Address<span className="text-red-500 px-2">*</span>
+                  {t("Street Address")} <span className="text-red-500 px-2">*</span>
                 </label>
                 <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
-                <label className=" block p-2 px-0 text-[#999999]">Apartment, floor, etc. (optional)</label>
+                <label className=" block p-2 px-0 text-[#999999]">{t("Apartment, floor, etc. (optional)")}</label>
                 <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
-                  Town/City<span className="text-red-500 px-2">*</span>
+                  {t("Town/City")} <span className="text-red-500 px-2">*</span>
                 </label>
                 <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
-                  Phone Number<span className="text-red-500 px-2">*</span>
+                  {t("Phone Number")}
+                  <span className="text-red-500 px-2">*</span>
                 </label>
                 <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
-                  Email Address<span className="text-red-500 px-2">*</span>
+                  {t("Email Address")} <span className="text-red-500 px-2">*</span>
                 </label>
                 <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
@@ -84,7 +85,7 @@ export default function CheckOut() {
                       <h3 className="text-sm text-center">{t(prodect.title)}</h3>
                     </div>
                     <div>
-                      <p> {((quantities[prodect.id] || 1) * (parseFloat(prodect.priceAfter.replace("$", "")) || 0)).toFixed(2)}</p>
+                      <p> ${((quantities[prodect.id] || 1) * (parseFloat(prodect.priceAfter.replace("$", "")) || 0)).toFixed(2)}</p>
                     </div>
                   </div>
                 </div>
@@ -109,7 +110,7 @@ export default function CheckOut() {
                     <input type="radio" name="radio" />
                     <div className="flex justify-between w-[100%] ">
                       <div>
-                        <p>Bank</p>
+                        <p>{t("Bank")}</p>
                       </div>
                       <div className="flex gap-4">
                         <img src="/images/image 30.png" className="w-[30px] h-[20px]" alt="" />
@@ -121,7 +122,7 @@ export default function CheckOut() {
                   </div>
                   <div className="flex gap-2">
                     <input type="radio" name="radio" />
-                    <p>Cash on delivery</p>
+                    <p>{t("Cash on delivery")}</p>
                   </div>
                 </div>
                 <div>
@@ -135,7 +136,7 @@ export default function CheckOut() {
                   </div>
                 </div>
                 <div>
-                  <button className="bg-main-color text-white py-3 px-6 rounded">Place Order</button>
+                  <button className="bg-main-color text-white py-3 px-6 rounded">{t("Place Order")}</button>
                 </div>
               </div>
             </div>

@@ -9,13 +9,14 @@ import SignIn from "./components/pages/auth/SignIn";
 import Cart from "./components/pages/Cart";
 import Account from "./components/pages/Account";
 import Orders from "./components/pages/Orders";
-import { ShopProvider  } from "./components/Context/context";
+import { ShopProvider } from "./components/Context/context";
 import Wishlist from "./components/pages/WishList";
+import CheckOut from "./components/pages/CheckOut";
 
 function App() {
   return (
     <>
-      <ShopProvider >
+      <ShopProvider>
         <BrowserRouter>
           <Routes>
             <Route element={<PageLayout />}>
@@ -26,19 +27,20 @@ function App() {
               <Route path="/SignIn" element={<SignIn />} />
               <Route path="/Cart" element={<Cart />} />
               <Route path="/Account" element={<Account />} />
-              <Route path="Orders" element={<Orders />} />
+              <Route path="/Orders" element={<Orders />} />
               <Route path="/Cancellations" element={<Home />} />
               <Route path="/Reviews" element={<Home />} />
-              <Route path="/Wishlist" element={<Wishlist/>} />
+              <Route path="/Wishlist" element={<Wishlist />} />
               <Route path="/Shop" element={<Home />} />
               <Route path="/Policy" element={<Home />} />
               <Route path="/Terms" element={<Home />} />
               <Route path="/Faq" element={<Home />} />
               <Route path="/ForgetPassword" element={<SignIn />} />
+              <Route path="/CheckOut" element={<CheckOut />} />
             </Route>
           </Routes>
         </BrowserRouter>
-      </ShopProvider >
+      </ShopProvider>
     </>
   );
 }

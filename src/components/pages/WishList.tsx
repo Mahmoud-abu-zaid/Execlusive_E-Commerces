@@ -34,13 +34,13 @@ export default function WishlistPage() {
         </div>
       </div>
       {wishlist.length === 0 ? (
-        <p className="text-center text-2xl">No products in wishlist.</p>
+        <p className="text-center text-2xl">{t("No products in wishlist.")}</p>
       ) : (
         <div className="flex items-center justify-center flex-wrap gap-8 ">
           {wishlist.map((prodect) => (
             <div key={prodect.id} className=" rounded">
               <div className="w-[270px] h-[250px] flex justify-center items-center bg-[#F5F5F5] rounded relative">
-                <img src={prodect.imgProdect} alt={prodect.title} className="w-full h-32 object-contain" />
+                <img src={prodect.imgProdect} alt={t(prodect.title)} className="w-full h-32 object-contain" />
                 <div className=" flex flex-col items-end absolute top-4 right-2 w-full h-full">
                   <RiDeleteBin4Line
                     onClick={() => {
@@ -64,12 +64,12 @@ export default function WishlistPage() {
                       ${dir === "rtl" ? "right-[-8px]" : "left-[8px]"}`}
                   >
                     <AiOutlineShoppingCart className=" text-white mx-3" />
-                    <p>Add to Cart</p>
+                    <p>{t("Add to Cart")}</p>
                   </button>
                 </div>
               </div>
               <div>
-                <h3 className=" font-bold mt-2 ">{prodect.title}</h3>
+                <h3 className=" font-bold mt-2 ">{t(prodect.title)}</h3>
                 <div className="flex gap-4">
                   <p className="text-red-500">{prodect.priceAfter}</p>
                   <p className="text-gray-500">

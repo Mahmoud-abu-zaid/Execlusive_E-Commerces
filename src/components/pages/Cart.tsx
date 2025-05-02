@@ -18,11 +18,18 @@ export default function Cart() {
         <Link to="/Cart"> {t("Cart")}</Link>
       </div>
       <div>
-        <h2 className="text-xl font-bold mb-4">{t("Cart")} ({cart.length}) </h2>
+        <h2 className="text-xl font-bold mb-4">
+          {t("Cart")} ({cart.length}){" "}
+        </h2>
       </div>
 
       {cart.length === 0 ? (
-        <p className=" text-2xl py-3 text-center">{t("No products in Cart.")} </p>
+        <div className=" py-14">
+          <p className=" text-2xl text-center py-5">{t("No products in Cart.")} </p>
+          <div className="m-auto bg-gray-200 w-fit rounded-[100px]">
+            <img src="/images/Animation - 1746177658110.gif" alt="" />
+          </div>
+        </div>
       ) : (
         <>
           <table className="w-[100%] shadow ">

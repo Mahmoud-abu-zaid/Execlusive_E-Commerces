@@ -34,7 +34,12 @@ export default function WishlistPage() {
         </div>
       </div>
       {wishlist.length === 0 ? (
-        <p className="text-center text-2xl">{t("No products in wishlist.")}</p>
+        <div>
+          <p className="text-center text-2xl py-5">{t("No products in wishlist.")}</p>
+          <div className="m-auto bg-gray-200 w-fit rounded-[100px]">
+            <img src="/images/Animation - 1746177955131.gif" alt="" />
+          </div>
+        </div>
       ) : (
         <div className="flex items-center justify-center flex-wrap gap-8 ">
           {wishlist.map((prodect) => (

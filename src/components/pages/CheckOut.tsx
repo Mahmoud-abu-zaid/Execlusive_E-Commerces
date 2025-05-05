@@ -1,10 +1,60 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { useShop } from "../Context/context";
+import { useState } from "react";
+import { toast } from "react-toastify";
+
+interface AccountInformation {
+  id?: string;
+  FirstName: string;
+  CompanyName: string;
+  StreetAddress: string;
+  Apartment: string;
+  City: string;
+  PhoneNumber: number;
+  EmailAddress: string;
+  PaymentMethod: string;
+}
 
 export default function CheckOut() {
   const { t } = useTranslation();
-  const { cart, subtotal, quantities } = useShop();
+  const { cart, subtotal, quantities, clearCart } = useShop();
+
+  const [recordingPhysics, setRecordingPhysics] = useState<AccountInformation>({
+    FirstName: "",
+    CompanyName: "",
+    StreetAddress: "",
+    Apartment: "",
+    City: "",
+    PhoneNumber: 0,
+    EmailAddress: "",
+    PaymentMethod: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setRecordingPhysics((prev) => ({
+      ...prev,
+      [name]: name === "PhoneNumber" ? Number(value) : value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Submitting Data: ", recordingPhysics);
+    setRecordingPhysics({
+      FirstName: "",
+      CompanyName: "",
+      StreetAddress: "",
+      Apartment: "",
+      City: "",
+      PhoneNumber: 0,
+      EmailAddress: "",
+      PaymentMethod: "",
+    });
+    toast.success(t("Application successfully submitted"));
+    clearCart();
+  };
 
   return (
     <>
@@ -32,7 +82,7 @@ export default function CheckOut() {
 
           <Link to="/Cart"> {t("CheckOut")}</Link>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <h2 className="text-2xl py-5">{t("Billing Details")}</h2>
           <div className="flex justify-around flex-wrap gap-7">
             <div className="w-[100%] md:w-[50%]">
@@ -40,40 +90,41 @@ export default function CheckOut() {
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("First Name")} <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
+
+                <input type="text" name="FirstName" value={recordingPhysics.FirstName} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">{t("Company Name")} </label>
-                <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" />
+                <input type="text" name="CompanyName" value={recordingPhysics.CompanyName} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Street Address")} <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input type="text" name="StreetAddress" value={recordingPhysics.StreetAddress} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">{t("Apartment, floor, etc. (optional)")}</label>
-                <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" />
+                <input type="text" name="Apartment" value={recordingPhysics.Apartment} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Town/City")} <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input type="text" name="City" value={recordingPhysics.City} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Phone Number")}
                   <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input type="number" name="PhoneNumber" value={recordingPhysics.PhoneNumber} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Email Address")} <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="text" className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input type="email" name="EmailAddress" value={recordingPhysics.EmailAddress} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
               </div>
             </div>
             <div className="md:w-[35%] w-[95%] flex flex-col gap-5">
@@ -107,7 +158,7 @@ export default function CheckOut() {
                 </div>
                 <div className="flex flex-col gap-4 py-4">
                   <div className="flex gap-2">
-                    <input type="radio" name="radio" />
+                    <input type="radio" value="Bank" name="PaymentMethod" checked={recordingPhysics.PaymentMethod === "Bank"} onChange={handleChange} />
                     <div className="flex justify-between w-[100%] ">
                       <div>
                         <p>{t("Bank")}</p>
@@ -121,7 +172,7 @@ export default function CheckOut() {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <input type="radio" name="radio" />
+                    <input type="radio" value="CashOnDelivery" name="PaymentMethod" checked={recordingPhysics.PaymentMethod === "CashOnDelivery"} onChange={handleChange} />
                     <p>{t("Cash on delivery")}</p>
                   </div>
                 </div>
@@ -136,7 +187,9 @@ export default function CheckOut() {
                   </div>
                 </div>
                 <div>
-                  <button className="bg-main-color text-white py-3 px-6 rounded">{t("Place Order")}</button>
+                  <button type="submit" className="bg-main-color cursor-pointer text-white py-3 px-6 rounded">
+                    {t("Place Order")}
+                  </button>
                 </div>
               </div>
             </div>

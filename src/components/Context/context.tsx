@@ -20,6 +20,7 @@ interface ShopContextType {
   cart: Product[];
   addToCart: (product: Product) => void;
   removeCart: (productId: number) => void;
+  clearCart:()=>void
   isCart: (productId: number) => boolean;
   quantities: { [key: number]: number };
   updateQuantity: (id: number, qty: number) => void;
@@ -36,6 +37,7 @@ export const ShopContext = createContext<ShopContextType>({
   addToCart: () => {},
   removeCart: () => {},
   isCart: () => false,
+  clearCart:()=>{},
   quantities: {},
   updateQuantity: () => {},
   subtotal: 0,
@@ -98,6 +100,10 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
     return cart.some((item) => item.id === productId);
   };
 
+  const clearCart = () => {
+    setCart([]); 
+    localStorage.removeItem("cart"); // وامسحها كمان من localStorage
+  };
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
 
   const updateQuantity = (id: number, qty: number) => {
@@ -125,6 +131,7 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
         addToCart,
         removeCart,
         isCart,
+        clearCart,
         quantities,
         updateQuantity,
         subtotal,

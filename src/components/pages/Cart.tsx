@@ -1,13 +1,25 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useShop } from "../Context/context";
 import { FaXmark } from "react-icons/fa6";
-import BtnLink from "../ui/BtnLink";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 export default function Cart() {
   const { cart, removeCart, quantities, updateQuantity, subtotal } = useShop();
+
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
+  function CheckLogIn() {
+    const checkId = localStorage.getItem("userId");
+    if (checkId) {
+      navigate("/CheckOut");
+    } else {
+      navigate("/SignIn");
+      toast.warn(t("Please sign in first."));
+    }
+  }
   return (
     <div className="p-4">
       <div className="py-4">
@@ -116,7 +128,9 @@ export default function Cart() {
                 <p>{subtotal.toFixed(2)} $</p>
               </div>
               <div className="py-4 m-auto">
-                <BtnLink path="/CheckOut" title={t("Procees to checkout")} />
+                <button onClick={CheckLogIn} className="py-3 px-4 bg-main-color text-white rounded">
+                  {t("Procees to checkout")}
+                </button>
               </div>
             </div>
           </div>

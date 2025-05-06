@@ -18,7 +18,8 @@ interface AccountInformation {
 
 export default function CheckOut() {
   const { t } = useTranslation();
-  const { cart, subtotal, quantities, clearCart } = useShop();
+
+  const { cart, subtotal, quantities, addOrder } = useShop();
 
   const [recordingPhysics, setRecordingPhysics] = useState<AccountInformation>({
     FirstName: "",
@@ -42,6 +43,11 @@ export default function CheckOut() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Submitting Data: ", recordingPhysics);
+
+    if (cart.length > 0) {
+      addOrder(cart);
+    }
+
     setRecordingPhysics({
       FirstName: "",
       CompanyName: "",
@@ -52,8 +58,8 @@ export default function CheckOut() {
       EmailAddress: "",
       PaymentMethod: "",
     });
+
     toast.success(t("Application successfully submitted"));
-    clearCart();
   };
 
   return (

@@ -20,11 +20,12 @@ interface ShopContextType {
   cart: Product[];
   addToCart: (product: Product) => void;
   removeCart: (productId: number) => void;
-  clearCart:()=>void
   isCart: (productId: number) => boolean;
   quantities: { [key: number]: number };
   updateQuantity: (id: number, qty: number) => void;
   subtotal: number;
+  orders: Product[];
+  addOrder: (products: Product[]) => void;
 }
 
 export const ShopContext = createContext<ShopContextType>({
@@ -37,10 +38,11 @@ export const ShopContext = createContext<ShopContextType>({
   addToCart: () => {},
   removeCart: () => {},
   isCart: () => false,
-  clearCart:()=>{},
   quantities: {},
   updateQuantity: () => {},
   subtotal: 0,
+  orders: [],
+  addOrder: () => {},
 });
 export const useShop = () => useContext(ShopContext);
 
@@ -50,8 +52,10 @@ interface ProviderProps {
 
 export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   const [wishlist, setWishlist] = useState<Product[]>([]);
+
   const [cart, setCart] = useState<Product[]>([]);
 
+  const [orders, setOrders] = useState<Product[]>([]);
   useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
     if (storedWishlist) {
@@ -60,7 +64,14 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
 
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {
-      setCart(JSON.parse(storedCart));
+      const parsed: (Product | null)[] = JSON.parse(storedCart);
+      const filtered = parsed.filter((prodect): prodect is Product => prodect !== null);
+      setCart(filtered);
+    }
+    
+    const storedOrders = localStorage.getItem("orders");
+    if (storedOrders) {
+      setOrders(JSON.parse(storedOrders));
     }
   }, []);
 
@@ -85,6 +96,7 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const addToCart = (product: Product) => {
+    if (!product) return;
     const updated = [...cart, product];
     setCart(updated);
     localStorage.setItem("cart", JSON.stringify(updated));
@@ -97,13 +109,9 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const isCart = (productId: number) => {
-    return cart.some((item) => item.id === productId);
+    return cart.some((item) => item && item.id === productId);
   };
 
-  const clearCart = () => {
-    setCart([]); 
-    localStorage.removeItem("cart"); // وامسحها كمان من localStorage
-  };
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
 
   const updateQuantity = (id: number, qty: number) => {
@@ -114,11 +122,22 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   const subtotal = cart.reduce((sum, item) => {
+    if (!item) return sum;
+
     const quantity = quantities[item.id] || 1;
     const price = parseFloat(item.priceAfter.replace("$", "")) || 0;
     return sum + quantity * price;
   }, 0);
 
+  const addOrder = (products: Product[]) => {
+    const updated = [...orders, ...products];
+    setOrders(updated);
+    localStorage.setItem("orders", JSON.stringify(updated));
+
+    setCart([]); // يمسح المنتجات من السلة
+    localStorage.removeItem("cart");
+    setQuantities({});
+  };
   return (
     <ShopContext.Provider
       value={{
@@ -131,10 +150,11 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
         addToCart,
         removeCart,
         isCart,
-        clearCart,
         quantities,
         updateQuantity,
         subtotal,
+        orders,
+        addOrder,
       }}
     >
       {children}

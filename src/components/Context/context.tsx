@@ -9,6 +9,8 @@ export interface Product {
   PriceReduction: string;
   rating: number;
   Quantity: number;
+  orderedQuantity?: number;
+  orderedSubtotal?: number;
 }
 
 interface ShopContextType {
@@ -68,7 +70,7 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
       const filtered = parsed.filter((prodect): prodect is Product => prodect !== null);
       setCart(filtered);
     }
-    
+
     const storedOrders = localStorage.getItem("orders");
     if (storedOrders) {
       setOrders(JSON.parse(storedOrders));
@@ -130,14 +132,28 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   }, 0);
 
   const addOrder = (products: Product[]) => {
-    const updated = [...orders, ...products];
+    const updatedProducts = products.map((product) => {
+      const quantity = quantities[product.id] || 1;
+      const price = parseFloat(product.priceAfter.replace("$", "")) || 0;
+      const subtotal = quantity * price;
+
+      return {
+        ...product,
+        orderedQuantity: quantity,
+        orderedSubtotal: subtotal,
+      };
+    });
+
+    const updated = [...orders, ...updatedProducts];
     setOrders(updated);
     localStorage.setItem("orders", JSON.stringify(updated));
 
-    setCart([]); // يمسح المنتجات من السلة
+    setCart([]);
     localStorage.removeItem("cart");
     setQuantities({});
+    console.log(JSON.parse(localStorage.getItem("orders")!));
   };
+
   return (
     <ShopContext.Provider
       value={{

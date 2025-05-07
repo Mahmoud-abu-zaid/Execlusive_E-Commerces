@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import SiteStatistics from "./SiteStatistics";
 import Managers from "./Managers";
+import Service from "./Service";
 
 export default function About() {
   const { t } = useTranslation();
@@ -44,6 +45,7 @@ export default function About() {
 
         <SiteStatistics />
         <Managers />
+        <Service />
       </div>
     </>
   );

@@ -6,12 +6,12 @@ export default function Orders() {
   const { orders } = useShop();
   return (
     <div>
-      <h2 className="text-2xl px-[40px] py-5">My Orders</h2>
+      <h2 className="text-2xl px-[40px] py-5">{t("My Orders")}</h2>
 
       {orders.length === 0 ? (
         <div className="flex flex-col justify-center items-center">
           <img className="w-[300px] h-[300px] rounded-3xl" src="/images/19197384.jpg" alt="" />
-          <p className="py-8 text-3xl">No orders yet.</p>
+          <p className="py-8 text-3xl">{t("No orders yet.")}</p>
         </div>
       ) : (
         <>

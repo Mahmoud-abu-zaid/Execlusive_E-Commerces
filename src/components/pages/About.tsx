@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import SiteStatistics from "./SiteStatistics";
+import Managers from "./Managers";
 
 export default function About() {
   const { t } = useTranslation();
@@ -32,7 +33,7 @@ export default function About() {
               <p>
                 {t("Exclusive has more than 1 Million products to offer, growing at a")} <br />
                 {t("very fast. Exclusive offers a diverse assotment in categories")} <br />
-                {t("ranging from consumer.")} 
+                {t("ranging from consumer.")}
               </p>
             </div>
             <div className="">
@@ -40,10 +41,9 @@ export default function About() {
             </div>
           </div>
         </section>
-        <section>
-          <SiteStatistics />
-        </section>
-        <section></section>
+
+        <SiteStatistics />
+        <Managers />
       </div>
     </>
   );

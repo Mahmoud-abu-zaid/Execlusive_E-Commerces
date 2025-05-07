@@ -33,6 +33,9 @@ function App() {
               <Route path="/Wishlist" element={<Wishlist />} />
               <Route path="/Shop" element={<Home />} />
               <Route path="/Policy" element={<Home />} />
+              <Route path="/Shop" element={<Home />} />
+              <Route path="/Contect" element={<Contact />} />
+
               <Route path="/Terms" element={<Home />} />
               <Route path="/Faq" element={<Home />} />
               <Route path="/ForgetPassword" element={<SignIn />} />

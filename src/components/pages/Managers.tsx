@@ -5,16 +5,16 @@ import { TiSocialLinkedin } from "react-icons/ti";
 
 export default function Managers() {
   const managers = [
-    { imgManag: "/public/images/tom_cruise.png", nameManag: "Tom Cruise", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
-    { imgManag: "/public/images/will_Smith.png", nameManag: "Will Smith", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
+    { imgManag: "/images/tom_cruise.png", nameManag: "Tom Cruise", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
+    { imgManag: "/images/will_Smith.png", nameManag: "Will Smith", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
     {
-      imgManag: "/public/images/snapedit_1746612194757.png",
+      imgManag: "/images/snapedit_1746612194757.png",
       nameManag: "Mahmoud Abu Zaid",
       jop: "Front End Developer",
       media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> },
     },
-    { imgManag: "/public/images/emma_watson.png", nameManag: "Emma Watson", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
-    { imgManag: "/public/images/tom_cruise.png", nameManag: "Tom Cruise", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
+    { imgManag: "/images/emma_watson.png", nameManag: "Emma Watson", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
+    { imgManag: "/images/tom_cruise.png", nameManag: "Tom Cruise", jop: "Founder & Chairman", media: { iconst: <IoLogoInstagram />, iconI: <TiSocialLinkedin />, iconL: <FaXTwitter /> } },
   ];
 
   const [currentSlide, setCurrentSlide] = useState(1);

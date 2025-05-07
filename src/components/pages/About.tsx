@@ -37,7 +37,7 @@ export default function About() {
               </p>
             </div>
             <div className="">
-              <img className="" src="/public/images/portrait-two-african-females.png" alt="" />
+              <img className="" src="/images/portrait-two-african-females.png" alt="" />
             </div>
           </div>
         </section>

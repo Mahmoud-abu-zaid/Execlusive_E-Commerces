@@ -19,7 +19,7 @@ export default function Contact() {
           </Link>
         </div>
         <div className=" flex flex-wrap md:grid md:grid-cols-[1fr_2fr] justify-center items-center gap-4">
-          <div className=" shadow py-10 px-6 w-[100]">
+          <div className=" shadow py-10 px-6 w-full">
             <div className="flex gap-4 items-center mb-3">
               <div className="bg-main-color rounded-4xl p-2 w-[40px] h-[40px] flex items-center justify-center ">
                 <BsTelephoneInbound className="text-xl text-white " />

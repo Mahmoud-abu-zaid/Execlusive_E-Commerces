@@ -63,21 +63,22 @@ export default function Contact() {
               </div>
               <p className="font-bold">{t("Call To Us")}</p>
             </div>
-            <p>We are available 24/7, 7 days a week.</p>
-            <p>Phone: +8801611112222</p>
+            <p>{t("We are available 24/7, 7 days a week.")}</p>
+            <p>{t("Phone")}: +8801611112222</p>
             <hr className=" opacity-20 my-5" />
             <div className="flex gap-4 items-center my-3">
               <div className="bg-main-color rounded-4xl p-2  w-[40px] h-[40px] flex items-center justify-center ">
                 <IoMailOutline className="text-xl text-white " />
               </div>
-              <p className="font-bold">Write To US</p>
+              <p className="font-bold">{t("Write To US")}</p>
             </div>
             <p>
-              Fill out our form and we will contact <br />
-              you within 24 hours.
+              {t("Fill out our form and we will contact")}
+              <br />
+              {t("you within 24 hours.")}
             </p>
-            <p className="py-3">Emails: customer@exclusive.com</p>
-            <p>Emails: support@exclusive.com</p>
+            <p className="py-3">{t("Emails")}: {t("customer@exclusive.com")}</p>
+            <p>{t("Emails")}: {t("support@exclusive.com")}</p>
           </div>
           <div className="shadow h-[100%] py-7 pb-2 px-6 flex flex-col gap-4">
             <form
@@ -93,7 +94,7 @@ export default function Contact() {
                   className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
                   type="text"
                   required
-                  placeholder="Your Name"
+                  placeholder={t("Your Name")}
                 />
                 <input
                   value={formInputMassage.Email}
@@ -101,7 +102,7 @@ export default function Contact() {
                   className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
                   type="email"
                   required
-                  placeholder="Your Email"
+                  placeholder={t("Your Email")}
                 />
                 <input
                   value={formInputMassage.Phone}
@@ -109,7 +110,7 @@ export default function Contact() {
                   className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
                   type="tel"
                   required
-                  placeholder="Your Phone"
+                  placeholder={t("Your Phone")}
                 />
               </div>
               <div className="flex justify-center items-center w-full h-full my-3 rounded">
@@ -119,13 +120,13 @@ export default function Contact() {
                   className="p-[8px] w-full h-full  outline-0 bg-[#F5F5F5] "
                   name=""
                   id=""
-                  placeholder="Your Massage"
+                  placeholder={t("Your Massage")}
                   minLength={20}
                 ></textarea>
               </div>
               <div className="flex justify-end py-4">
                 <button type="submit" className={`${formInputMassage.Massage.length === 0 ? "bg-gray-200 cursor-no-drop text-black" : "bg-main-color text-white cursor-pointer"} py-3 px-6  rounded `}>
-                  Send Massage
+                 {t("Send Massage")} 
                 </button>
               </div>
             </form>
@@ -139,7 +140,7 @@ export default function Contact() {
             {submittedData.map((massage, index) => (
               <div key={index} className="px-3 py-7 mb-3 shadow flex  items-center justify-center  flex-wrap sm:justify-between sm:flex-nowrap">
                 <div className="">
-                  <h3 className="font-bold mb-2 text-main-color"> Your Submitted Message</h3>
+                  <h3 className="font-bold mb-2 text-main-color">{t("Your Submitted Message")} </h3>
                   <p className="py-1">{massage.Name}</p>
                   <p className="pt-1 "> {massage.Massage}</p>
                 </div>
@@ -149,7 +150,7 @@ export default function Contact() {
                   </button>
                   <FaCommentDots className="text-8xl text-amber-400" />
                   <div className="flex items-center pt-1">
-                    <p className="text-xl text-yellow-500">Waiting for review </p>
+                    <p className="text-xl text-yellow-500">{t("Waiting for review")} </p>
                     <span className="bg-yellow-500 p-[5px] rounded-3xl m-1 mt-3"></span>
                   </div>
                 </div>

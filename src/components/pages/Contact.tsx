@@ -13,7 +13,6 @@ interface ContactMassage {
 
 export default function Contact() {
   const { t } = useTranslation();
-const [submittedData, setSubmittedData] = useState<ContactMassage | null>(null);
   const [formInputMassage, setFormInputMassage] = useState<ContactMassage>({
     Name: "",
     Email: "",

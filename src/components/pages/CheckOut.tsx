@@ -11,7 +11,7 @@ interface AccountInformation {
   StreetAddress: string;
   Apartment: string;
   City: string;
-  PhoneNumber: number;
+  PhoneNumber: string;
   EmailAddress: string;
   PaymentMethod: string;
 }
@@ -27,40 +27,29 @@ export default function CheckOut() {
     StreetAddress: "",
     Apartment: "",
     City: "",
-    PhoneNumber: 0,
+    PhoneNumber: "",
     EmailAddress: "",
     PaymentMethod: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setRecordingPhysics((prev) => ({
-      ...prev,
-      [name]: name === "PhoneNumber" ? Number(value) : value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Submitting Data: ", recordingPhysics);
-
-    if (cart.length > 0) {
-      addOrder(cart);
-    }
-
+  function checkOutData() {
     setRecordingPhysics({
+      ...recordingPhysics,
       FirstName: "",
       CompanyName: "",
       StreetAddress: "",
       Apartment: "",
       City: "",
-      PhoneNumber: 0,
+      PhoneNumber: "",
       EmailAddress: "",
       PaymentMethod: "",
     });
+    console.log("Submitting Data: ", recordingPhysics);
+  }
 
-    toast.success(t("Application successfully submitted"));
-  };
+  if (cart.length > 0) {
+    addOrder(cart);
+  }
 
   return (
     <>
@@ -88,7 +77,13 @@ export default function CheckOut() {
 
           <Link to="/Cart"> {t("CheckOut")}</Link>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            checkOutData();
+            toast.success(t("Application successfully submitted"));
+          }}
+        >
           <h2 className="text-2xl py-5">{t("Billing Details")}</h2>
           <div className="flex justify-around flex-wrap gap-7">
             <div className="w-[100%] md:w-[50%]">
@@ -97,40 +92,87 @@ export default function CheckOut() {
                   {t("First Name")} <span className="text-red-500 px-2">*</span>
                 </label>
 
-                <input type="text" name="FirstName" value={recordingPhysics.FirstName} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input
+                  type="text"
+                  name="FirstName"
+                  value={recordingPhysics.FirstName}
+                  onChange={(e) => setRecordingPhysics({ ...recordingPhysics, FirstName: e.target.value })}
+                  className="bg-[#F5F5F5] w-[100%] p-2"
+                  required
+                />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">{t("Company Name")} </label>
-                <input type="text" name="CompanyName" value={recordingPhysics.CompanyName} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" />
+                <input
+                  type="text"
+                  name="CompanyName"
+                  value={recordingPhysics.CompanyName}
+                  onChange={(e) => setRecordingPhysics({ ...recordingPhysics, CompanyName: e.target.value })}
+                  className="bg-[#F5F5F5] w-[100%] p-2"
+                />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Street Address")} <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="text" name="StreetAddress" value={recordingPhysics.StreetAddress} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input
+                  type="text"
+                  name="StreetAddress"
+                  value={recordingPhysics.StreetAddress}
+                  onChange={(e) => setRecordingPhysics({ ...recordingPhysics, StreetAddress: e.target.value })}
+                  className="bg-[#F5F5F5] w-[100%] p-2"
+                  required
+                />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">{t("Apartment, floor, etc. (optional)")}</label>
-                <input type="text" name="Apartment" value={recordingPhysics.Apartment} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" />
+                <input
+                  type="text"
+                  name="Apartment"
+                  value={recordingPhysics.Apartment}
+                  onChange={(e) => setRecordingPhysics({ ...recordingPhysics, Apartment: e.target.value })}
+                  className="bg-[#F5F5F5] w-[100%] p-2"
+                />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Town/City")} <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="text" name="City" value={recordingPhysics.City} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input
+                  type="text"
+                  name="City"
+                  value={recordingPhysics.City}
+                  onChange={(e) => setRecordingPhysics({ ...recordingPhysics, City: e.target.value })}
+                  className="bg-[#F5F5F5] w-[100%] p-2"
+                  required
+                />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Phone Number")}
                   <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="number" name="PhoneNumber" value={recordingPhysics.PhoneNumber} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input
+                  type="number"
+                  name="PhoneNumber"
+                  value={recordingPhysics.PhoneNumber}
+                  onChange={(e) => setRecordingPhysics({ ...recordingPhysics, PhoneNumber: e.target.value })}
+                  className="bg-[#F5F5F5] w-[100%] p-2"
+                  required
+                />
               </div>
               <div>
                 <label className=" block p-2 px-0 text-[#999999]">
                   {t("Email Address")} <span className="text-red-500 px-2">*</span>
                 </label>
-                <input type="email" name="EmailAddress" value={recordingPhysics.EmailAddress} onChange={handleChange} className="bg-[#F5F5F5] w-[100%] p-2" required />
+                <input
+                  type="email"
+                  name="EmailAddress"
+                  value={recordingPhysics.EmailAddress}
+                  onChange={(e) => setRecordingPhysics({ ...recordingPhysics, EmailAddress: e.target.value })}
+                  className="bg-[#F5F5F5] w-[100%] p-2"
+                  required
+                />
               </div>
             </div>
             <div className="md:w-[35%] w-[95%] flex flex-col gap-5">
@@ -164,7 +206,13 @@ export default function CheckOut() {
                 </div>
                 <div className="flex flex-col gap-4 py-4">
                   <div className="flex gap-2">
-                    <input type="radio" value="Bank" name="PaymentMethod" checked={recordingPhysics.PaymentMethod === "Bank"} onChange={handleChange} />
+                    <input
+                      type="radio"
+                      value="Bank"
+                      name="PaymentMethod"
+                      checked={recordingPhysics.PaymentMethod === "Bank"}
+                      onChange={(e) => setRecordingPhysics({ ...recordingPhysics, PaymentMethod: e.target.value })}
+                    />
                     <div className="flex justify-between w-[100%] ">
                       <div>
                         <p>{t("Bank")}</p>
@@ -178,7 +226,13 @@ export default function CheckOut() {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <input type="radio" value="CashOnDelivery" name="PaymentMethod" checked={recordingPhysics.PaymentMethod === "CashOnDelivery"} onChange={handleChange} />
+                    <input
+                      type="radio"
+                      value="CashOnDelivery"
+                      name="PaymentMethod"
+                      checked={recordingPhysics.PaymentMethod === "CashOnDelivery"}
+                      onChange={(e) => setRecordingPhysics({ ...recordingPhysics, PaymentMethod: e.target.value })}
+                    />
                     <p>{t("Cash on delivery")}</p>
                   </div>
                 </div>

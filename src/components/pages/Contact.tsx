@@ -1,10 +1,29 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BsTelephoneInbound } from "react-icons/bs";
 import { IoMailOutline } from "react-icons/io5";
 import { Link } from "react-router";
 
+interface ContactMassage {
+  Name: string;
+  Email: string;
+  Phone: string;
+  Massage: string;
+}
+
 export default function Contact() {
   const { t } = useTranslation();
+const [submittedData, setSubmittedData] = useState<ContactMassage | null>(null);
+  const [formInputMassage, setFormInputMassage] = useState<ContactMassage>({
+    Name: "",
+    Email: "",
+    Phone: "",
+    Massage: "",
+  });
+  function yourMassage() {
+    setFormInputMassage({ ...formInputMassage, Name: "", Email: "", Phone: "", Massage: "" });
+    console.log("date", formInputMassage);
+  }
   return (
     <>
       <div className="px-10 my-8">
@@ -42,18 +61,54 @@ export default function Contact() {
             <p className="py-3">Emails: customer@exclusive.com</p>
             <p>Emails: support@exclusive.com</p>
           </div>
-          <div className="shadow h-[100%] py-7 pb-4 px-6 flex flex-col gap-4">
-            <form>
+          <div className="shadow h-[100%] py-7 pb-2 px-6 flex flex-col gap-4">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                yourMassage();
+              }}
+            >
               <div className="w-full flex gap-3.5 justify-center items-center ">
-                <input className="p-2 w-[99%] bg-[#F5F5F5] outline-0" type="text" required placeholder="Your Name" />
-                <input className="p-2 w-[99%] bg-[#F5F5F5] outline-0" type="email" required placeholder="Your Email" />
-                <input className="p-2 w-[99%] bg-[#F5F5F5] outline-0" type="tel" required placeholder="Your Phone" />
+                <input
+                  value={formInputMassage.Name}
+                  onChange={(e) => setFormInputMassage({ ...formInputMassage, Name: e.target.value })}
+                  className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
+                  type="text"
+                  required
+                  placeholder="Your Name"
+                />
+                <input
+                  value={formInputMassage.Email}
+                  onChange={(e) => setFormInputMassage({ ...formInputMassage, Email: e.target.value })}
+                  className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
+                  type="email"
+                  required
+                  placeholder="Your Email"
+                />
+                <input
+                  value={formInputMassage.Phone}
+                  onChange={(e) => setFormInputMassage({ ...formInputMassage, Phone: e.target.value })}
+                  className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
+                  type="tel"
+                  required
+                  placeholder="Your Phone"
+                />
               </div>
-              <div className="flex justify-center items-center w-full h-[207px] my-3 rounded">
-                <textarea className="p-[5px] w-full h-[207px] outline-0 bg-[#F5F5F5] " name="" id="" placeholder="Your Massage"></textarea>
+              <div className="flex justify-center items-center w-full h-full my-3 rounded">
+                <textarea
+                  value={formInputMassage.Massage}
+                  onChange={(e) => setFormInputMassage({ ...formInputMassage, Massage: e.target.value })}
+                  className="p-[8px] w-full h-full  outline-0 bg-[#F5F5F5] "
+                  name=""
+                  id=""
+                  placeholder="Your Massage"
+                  minLength={20}
+                ></textarea>
               </div>
               <div className="flex justify-end py-4">
-                <button className="bg-main-color py-3 px-6  rounded text-white">Send Massage</button>
+                <button type="submit" className={`${formInputMassage.Massage.length=== 0 ?"bg-gray-200 cursor-no-drop  text-black":"bg-main-color text-white cursor-pointer"} py-3 px-6  rounded `}>
+                  Send Massage
+                </button>
               </div>
             </form>
           </div>

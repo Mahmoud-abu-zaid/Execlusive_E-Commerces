@@ -15,13 +15,13 @@ interface User {
   lastName?: string;
   email?: string;
   address?: string;
-  orders?: [];
+
   reviews?: [];
   collection?: [];
 }
 export default function SignUp() {
   const [formInput, setFormInput] = useState<User>({
-    id:uuidv4(),
+    id: uuidv4(),
 
     name: "",
     emailOrPhoneNumber: "",
@@ -31,7 +31,7 @@ export default function SignUp() {
     lastName: "",
     email: "",
     address: "",
-    orders: [],
+
     reviews: [],
     collection: [],
   });

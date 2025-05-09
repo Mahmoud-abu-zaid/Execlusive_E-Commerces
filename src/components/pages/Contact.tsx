@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BsTelephoneInbound } from "react-icons/bs";
+import { FaCommentDots, FaXmark } from "react-icons/fa6";
 import { IoMailOutline } from "react-icons/io5";
 import { Link } from "react-router";
 
@@ -13,6 +14,8 @@ interface ContactMassage {
 
 export default function Contact() {
   const { t } = useTranslation();
+
+  const [submittedData, setSubmittedData] = useState<ContactMassage[]>([]);
   const [formInputMassage, setFormInputMassage] = useState<ContactMassage>({
     Name: "",
     Email: "",
@@ -20,9 +23,25 @@ export default function Contact() {
     Massage: "",
   });
   function yourMassage() {
-    setFormInputMassage({ ...formInputMassage, Name: "", Email: "", Phone: "", Massage: "" });
+    const newMassege = [...submittedData, formInputMassage];
+    setSubmittedData(newMassege);
+    localStorage.setItem("MassagesContect", JSON.stringify(newMassege));
+    setFormInputMassage({ Name: "", Email: "", Phone: "", Massage: "" });
     console.log("date", formInputMassage);
   }
+  useEffect(() => {
+    const saved = localStorage.getItem("MassagesContect");
+    if (saved) {
+      setSubmittedData(JSON.parse(saved));
+    }
+  }, []);
+
+  function handleDeleteMessage(indexToDelete: number) {
+    const updated = submittedData.filter((_, index) => index !== indexToDelete);
+    setSubmittedData(updated);
+    localStorage.setItem("MassagesContect", JSON.stringify(updated));
+  }
+  const dir = localStorage.getItem("pageDirection");
   return (
     <>
       <div className="px-10 my-8">
@@ -105,13 +124,39 @@ export default function Contact() {
                 ></textarea>
               </div>
               <div className="flex justify-end py-4">
-                <button type="submit" className={`${formInputMassage.Massage.length=== 0 ?"bg-gray-200 cursor-no-drop  text-black":"bg-main-color text-white cursor-pointer"} py-3 px-6  rounded `}>
+                <button type="submit" className={`${formInputMassage.Massage.length === 0 ? "bg-gray-200 cursor-no-drop text-black" : "bg-main-color text-white cursor-pointer"} py-3 px-6  rounded `}>
                   Send Massage
                 </button>
               </div>
             </form>
           </div>
         </div>
+      </div>
+
+      <div className="flex justify-center w-full px-10">
+        {submittedData.length > 0 && (
+          <div className=" w-full">
+            {submittedData.map((massage, index) => (
+              <div key={index} className="px-3 py-7 mb-3 shadow flex  items-center justify-center  flex-wrap sm:justify-between sm:flex-nowrap">
+                <div className="">
+                  <h3 className="font-bold mb-2 text-main-color"> Your Submitted Message</h3>
+                  <p className="py-1">{massage.Name}</p>
+                  <p className="pt-1 "> {massage.Massage}</p>
+                </div>
+                <div className="flex flex-col items-center p-2 relative">
+                  <button onClick={() => handleDeleteMessage(index)} className={`absolute top-[-15px] ${dir === "rtl" ? "left-1" : "right-1"}  text-main-color cursor-pointer`}>
+                    <FaXmark />
+                  </button>
+                  <FaCommentDots className="text-8xl text-amber-400" />
+                  <div className="flex items-center pt-1">
+                    <p className="text-xl text-yellow-500">Waiting for review </p>
+                    <span className="bg-yellow-500 p-[5px] rounded-3xl m-1 mt-3"></span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

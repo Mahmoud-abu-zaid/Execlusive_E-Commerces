@@ -6,6 +6,7 @@ import StarRating from "../ui/StarRating";
 import { useShop } from "../Context/context";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight, FaRegEye, FaRegHeart } from "react-icons/fa6";
+import { Link } from "react-router";
 export default function ProductsFlashSales() {
   const { t } = useTranslation();
 
@@ -127,7 +128,7 @@ export default function ProductsFlashSales() {
           {FlashSales.map((prodect) => (
             <div key={prodect.id} className="w-[270px] flex-shrink-0 h-[350px]">
               <div className="flex justify-center items-center w-full h-[250px] relative bg-[#F5F5F5] rounded">
-                <img  src={prodect.imgProdect} alt={prodect.title} />
+                <img src={prodect.imgProdect} alt={prodect.title} />
 
                 <div className={`absolute h-full  w-full flex flex-col items-end ${dir === "rtl" ? " items-start" : ""} top-2 right-3  duration-300 ease-[0.3s] `}>
                   <FaRegHeart
@@ -142,7 +143,9 @@ export default function ProductsFlashSales() {
                     }}
                     className={`my-2  w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer ${isInWishlist(prodect.id) ? " bg-black text-white" : "bg-white text-black"}`}
                   />
-                  <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                  <Link to={`/product/${prodect.id}`}>
+                    <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                  </Link>
                   <div
                     className={`absolute bottom-[8px] right-[-12px] left-[12px] bg-black text-white rounded-b-sm ${
                       isCart(prodect.id) ? "opacity-100" : "opacity-0"
@@ -186,7 +189,7 @@ export default function ProductsFlashSales() {
           ))}
         </div>
         <div className="py-15 text-center">
-        <BtnLink path="/"  title={t("View All Products")} />
+          <BtnLink path="/" title={t("View All Products")} />
         </div>
       </div>
     </>

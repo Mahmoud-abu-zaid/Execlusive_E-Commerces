@@ -13,6 +13,7 @@ import { ShopProvider } from "./components/Context/context";
 import Wishlist from "./components/pages/WishList";
 import CheckOut from "./components/pages/CheckOut";
 import NotFound from "./components/pages/NotFound";
+import ProdectDetails from "./components/pages/ProdectDetails";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
               <Route path="/Faq" element={<Home />} />
               <Route path="/ForgetPassword" element={<SignIn />} />
               <Route path="/CheckOut" element={<CheckOut />} />
+              <Route path="/product/:productId" element={<ProdectDetails />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

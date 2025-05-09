@@ -12,6 +12,7 @@ import Orders from "./components/pages/Orders";
 import { ShopProvider } from "./components/Context/context";
 import Wishlist from "./components/pages/WishList";
 import CheckOut from "./components/pages/CheckOut";
+import NotFound from "./components/pages/NotFound";
 
 function App() {
   return (
@@ -35,11 +36,11 @@ function App() {
               <Route path="/Policy" element={<Home />} />
               <Route path="/Shop" element={<Home />} />
               <Route path="/Contect" element={<Contact />} />
-
               <Route path="/Terms" element={<Home />} />
               <Route path="/Faq" element={<Home />} />
               <Route path="/ForgetPassword" element={<SignIn />} />
               <Route path="/CheckOut" element={<CheckOut />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>

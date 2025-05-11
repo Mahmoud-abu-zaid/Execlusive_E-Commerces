@@ -4,6 +4,7 @@ import StarRating from "../ui/StarRating";
 import { useShop } from "../Context/context";
 import { useTranslation } from "react-i18next";
 import { FaRegEye, FaRegHeart } from "react-icons/fa6";
+import { Link } from "react-router";
 
 export default function BestSelling() {
   const { t } = useTranslation();
@@ -14,7 +15,7 @@ export default function BestSelling() {
 
   const BestSellingProdects = [
     {
-      id: 7,
+      id: 8,
       title: t("The north coat"),
       imgProdect: "/images/shirt.png",
       priceAfter: "$260",
@@ -24,7 +25,7 @@ export default function BestSelling() {
       Quantity: 65,
     },
     {
-      id: 8,
+      id: 9,
       title: t("Gucci duffle bag"),
       imgProdect: "images/bag.png",
       priceAfter: "$960",
@@ -34,7 +35,7 @@ export default function BestSelling() {
       Quantity: 65,
     },
     {
-      id: 9,
+      id: 10,
       title: t("RGB liquid CPU Cooler"),
       imgProdect: "/images/graphics_card.png",
       priceAfter: "$260",
@@ -44,7 +45,7 @@ export default function BestSelling() {
       Quantity: 65,
     },
     {
-      id: 10,
+      id: 11,
       title: t("Small BookSelf"),
       imgProdect: "/images/small_bookself.png",
       priceAfter: "$360",
@@ -79,8 +80,9 @@ export default function BestSelling() {
                     }}
                     className={`my-2  w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer ${isInWishlist(prodect.id) ? " bg-black text-white" : "bg-white text-black"}`}
                   />
-                  <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
-
+                  <Link to={`/product/${prodect.id}`}>
+                    <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                  </Link>
                   <div
                     className={`absolute bottom-[8px] right-[-12px] left-[12px] bg-black text-white rounded-b-sm ${
                       isCart(prodect.id) ? "opacity-100" : "opacity-0"

@@ -5,12 +5,13 @@ import { useTranslation } from "react-i18next";
 import { FaArrowLeft, FaArrowRight, FaRegEye, FaRegHeart } from "react-icons/fa6";
 import { useState } from "react";
 import BtnLink from "../ui/BtnLink";
+import { Link } from "react-router";
 
 export default function ExploreOurProducts() {
   const { t } = useTranslation();
   const ExploreProducts = [
     {
-      id: 11,
+      id: 12,
       title: t("Breed Dry Dog Food"),
       imgProdect: "/images/dog_food.png",
       priceAfter: "$100",
@@ -20,7 +21,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 12,
+      id: 13,
       title: t("CANON EOS DSLR Camera"),
       imgProdect: "/images/camera.png",
       priceAfter: "$960",
@@ -30,7 +31,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 13,
+      id: 14,
       title: t("ASUS FHD Gaming Laptop"),
       imgProdect: "/images/labtop.png",
       priceAfter: "$260",
@@ -40,7 +41,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 14,
+      id: 15,
       title: t("Curology Product Set"),
       imgProdect: "/images/Curology_Product_Set.png",
       priceAfter: "$360",
@@ -50,7 +51,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 15,
+      id: 16,
       title: t("Kids Electric Car"),
       imgProdect: "/images/Kids_Car.png",
       priceAfter: "$260",
@@ -60,7 +61,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 16,
+      id: 17,
       title: t("Jr. Zoom Soccer Cleats"),
       imgProdect: "/images/Copa_Sense.png",
       priceAfter: "$960",
@@ -70,7 +71,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 17,
+      id: 18,
       title: t("GP11 Shooter USB Gamepad"),
       imgProdect: "/images/PlayStation_arm_2.png",
       priceAfter: "$260",
@@ -80,7 +81,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 18,
+      id: 19,
       title: t("Quilted Satin Jacket"),
       imgProdect: "/images/jacket.png",
       priceAfter: "$360",
@@ -90,7 +91,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 19,
+      id: 20,
       title: t("The north coat"),
       imgProdect: "/images/shirt.png",
       priceAfter: "$260",
@@ -100,7 +101,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 20,
+      id: 21,
       title: t("Gucci duffle bag"),
       imgProdect: "images/bag.png",
       priceAfter: "$960",
@@ -110,7 +111,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 21,
+      id: 22,
       title: t("RGB liquid CPU Cooler"),
       imgProdect: "/images/graphics_card.png",
       priceAfter: "$260",
@@ -120,7 +121,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 22,
+      id: 23,
       title: t("Small BookSelf"),
       imgProdect: "/images/small_bookself.png",
       priceAfter: "",
@@ -130,7 +131,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 23,
+      id: 24,
       title: t("Breed Dry Dog Food"),
       imgProdect: "/images/dog_food.png",
       priceAfter: "$100",
@@ -140,7 +141,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 24,
+      id: 25,
       title: t("CANON EOS DSLR Camera"),
       imgProdect: "/images/camera.png",
       priceAfter: "$960",
@@ -150,7 +151,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 25,
+      id: 26,
       title: t("ASUS FHD Gaming Laptop"),
       imgProdect: "/images/labtop.png",
       priceAfter: "$260",
@@ -160,7 +161,7 @@ export default function ExploreOurProducts() {
       Quantity: 65,
     },
     {
-      id: 26,
+      id: 27,
       title: t("Curology Product Set"),
       imgProdect: "/images/Curology_Product_Set.png",
       priceAfter: "$360",
@@ -222,7 +223,9 @@ export default function ExploreOurProducts() {
                     }}
                     className={`my-2  w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer ${isInWishlist(prodect.id) ? " bg-black text-white" : "bg-white text-black"}`}
                   />
-                  <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                  <Link to={`/product/${prodect.id}`}>
+                    <FaRegEye className="my-2 bg-white w-[35px] h-[35px] block rounded-3xl p-[8px] cursor-pointer" />
+                  </Link>
 
                   <div
                     className={`absolute bottom-[8px] right-[-12px] left-[12px] bg-black text-white rounded-b-sm ${

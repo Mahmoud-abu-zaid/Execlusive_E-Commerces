@@ -33,6 +33,7 @@ export default function CheckOut() {
   });
 
   function checkOutData() {
+    addOrder(cart);
     setRecordingPhysics({
       ...recordingPhysics,
       FirstName: "",
@@ -46,10 +47,7 @@ export default function CheckOut() {
     });
     console.log("Submitting Data: ", recordingPhysics);
   }
-
-  if (cart.length > 0) {
-    addOrder(cart);
-  }
+ 
 
   return (
     <>

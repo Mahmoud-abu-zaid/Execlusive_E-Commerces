@@ -1,10 +1,11 @@
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useShop } from "../Context/context";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import StarRating from "../ui/StarRating";
 import { FaRegHeart } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import { TbTruckDelivery, TbTruckReturn } from "react-icons/tb";
 
 interface Product {
   id: number;
@@ -17,19 +18,66 @@ interface Product {
   PriceReduction: string;
   rating: number;
   Quantity: number;
-  orderedQuantity?: number;
-  orderedSubtotal?: number;
+  color?: string;
 }
 
 export default function ProductDetails() {
-  const { productId } = useParams();
   const { t } = useTranslation();
-  const { addToWishlist, isInWishlist, removeFromWishlist } = useShop();
 
-  const [product, setProduct] = useState<Product | null>(null);
-  const [selectedColor, setSelectedColor] = useState<string>("");
+  const navigate = useNavigate();
+
+  const { productId } = useParams();
+
+  const [quantity, setQuantity] = useState(1);
+
   const [mainImage, setMainImage] = useState<string>("");
 
+  const [product, setProduct] = useState<Product | null>(null);
+
+  const [selectedColor, setSelectedColor] = useState<string>("");
+
+  const { addToWishlist, isInWishlist, removeFromWishlist, updateQuantity, addToCart, cart } = useShop();
+
+  const increase = () => setQuantity((prev) => prev + 1);
+
+  const decrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(1, parseInt(e.target.value) || 1);
+
+    setQuantity(value);
+  };
+
+  function CheckLogIn() {
+    const checkId = localStorage.getItem("userId");
+
+    if (!product) return;
+
+    const selectedImage = product.imgProdect[selectedColor]?.[0] || "";
+
+    const productForCart = {
+      ...product,
+      imgProdect: selectedImage,
+      color: selectedColor,
+    };
+
+    const isInCart = cart.some((item) => item.id === productForCart.id && item.color === productForCart.color);
+
+    if (isInCart) {
+      toast.warn("This product is already added to the cart");
+      return;
+    }
+
+    addToCart(productForCart);
+    updateQuantity(product.id, quantity);
+
+    if (checkId) {
+      navigate("/CheckOut");
+    } else {
+      navigate("/SignIn");
+      toast.warn(t("Please sign in first."));
+    }
+  }
   const products: Product[] = [
     {
       id: 1,
@@ -154,8 +202,8 @@ export default function ProductDetails() {
   if (!product) return null;
 
   return (
-    <div className="px-10">
-      <div className="py-4 flex">
+    <div className="sm:px-10 px-1 py-5">
+      <div className="py-7 flex">
         <Link to="/Account" className="text-gray-600">
           {t("Account")}
         </Link>
@@ -163,25 +211,25 @@ export default function ProductDetails() {
         <p>{t(product.title)}</p>
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center flex-wrap xl:flex-nowrap">
         <div className="mx-2">
           {product.imgProdect[selectedColor]?.map((img, index) => (
             <div key={index} className="flex justify-center items-center">
               <div
                 onClick={() => setMainImage(img)}
-                className={`w-[130px] h-[104px] mb-2 cursor-pointer rounded flex justify-center items-center ${mainImage === img ? "shadow bg-gray-200" : "bg-gray-100"}`}
+                className={`sm:w-[130px] sm:h-[104px] w-[95px]  h-[90px] mb-2 cursor-pointer rounded flex justify-center items-center p-1 ${mainImage === img ? "shadow bg-gray-200" : "bg-gray-100"}`}
               >
-                <img src={img} alt="" className="w-[100px] h-[70px]" />
+                <img src={img} alt="" className="sm:w-[100px] w-[80px] h-[70px]" />
               </div>
             </div>
           ))}
         </div>
 
-        <div className="flex justify-center items-center min-w-[500px] h-[553px] rounded bg-gray-100">
-          <img src={mainImage} alt={product.title} className="w-[230px] h-[230px]" />
+        <div className="flex justify-center items-center  xl:min-w-[500px] sm:w-[calc(100%-160px)] w-[calc(100%-115px)]  sm:h-[516px] h-[287px] p-2 rounded bg-gray-100">
+          <img src={mainImage} alt={product.title} className="sm:w-[230px]  sm:h-[220px]" />
         </div>
 
-        <div className="px-4">
+        <div className="px-4 w-full">
           <h1 className="text-2xl font-bold">{product.title}</h1>
           <div className="flex gap-2 py-2 ">
             <StarRating rating={product.rating} />
@@ -197,39 +245,79 @@ export default function ProductDetails() {
           <p className="my-4 text-[14px]">PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
           <hr className="my-4 opacity-30" />
           <div className="flex items-center gap-2 my-4">
-            <p className="text-2xl">Colors :</p>
-            {Object.keys(product.imgProdect).map((color) => (
-              <button
-                key={color}
-                onClick={() => {
-                  setSelectedColor(color);
-                  setMainImage(product.imgProdect[color][0]);
-                }}
-                className={`w-5 h-5 rounded-full border-2 ${selectedColor === color ? "border-gray-600" : "border-gray-300"}`}
-                style={{ backgroundColor: color }}
-              />
-            ))}
-          </div>
-          <div className="flex justify-around items-center gap-10">
-            <div></div>
-            <div>
-              <button className="bg-main-color py-3 px-10 text-white rounded">Buy now</button>
+            <div className="pb-1">
+              <p className="text-2xl">Colors :</p>
             </div>
-            {product && (
-              <div>
-                <FaRegHeart
+            <div className="flex items-center  gap-1">
+              {Object.keys(product.imgProdect).map((color) => (
+                <button
+                  key={color}
                   onClick={() => {
-                    if (isInWishlist(product.id)) {
-                      removeFromWishlist(product.id);
-                      toast.warn(t("Removed from wishlist"));
-                    } else {
-                      handleAddToWishlist();
-                      toast.success(t("Added to wishlist"));
-                    }
+                    setSelectedColor(color);
+                    setMainImage(product.imgProdect[color][0]);
                   }}
-                />
+                  className={`w-5 h-5 rounded-full border-2 ${selectedColor === color ? "border-gray-600" : "border-gray-300"}`}
+                  style={{ backgroundColor: color }}
+                ></button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-10">
+            <div className="flex items-center text-center border-2 border-[#808080] rounded bordr-black">
+              <button onClick={decrease} className="flex items-center justify-center py-1 pb-2 w-10 text-4xl  rounded-l-[2px] duration-200 ease-in-out hover:bg-main-color hover:text-white cursor-pointer">
+                -
+              </button>
+              <input type="number" min="1" value={quantity} onChange={handleChange} className="w-16 p-[14px] text-center outline-0  border-x-2 border-[#808080] cursor-pointer" />
+
+              <button onClick={increase} className="flex items-center justify-center py-1 pb-2 text-4xl  w-10 rounded-e-[2px] duration-200 ease-in-out hover:bg-main-color hover:text-white cursor-pointer">
+                +
+              </button>
+            </div>
+
+            <div>
+              <button className="bg-main-color py-3 px-10 text-white rounded cursor-pointer" onClick={CheckLogIn}>
+                Buy now
+              </button>
+            </div>
+
+            <div>
+              <FaRegHeart
+                className={`border-[2px] border-[#808080] p-[4px] text-4xl rounded cursor-pointer ${isInWishlist(product.id) ? "bg-black text-white border-black" : "bg-white text-black"}`}
+                onClick={() => {
+                  if (isInWishlist(product.id)) {
+                    removeFromWishlist(product.id);
+                    toast.warn(t("Removed from wishlist"));
+                  } else {
+                    handleAddToWishlist();
+                    toast.success(t("Added to wishlist"));
+                  }
+                }}
+              />
+            </div>
+          </div>
+          <div className="border-2 border-[#808080] rounded my-8">
+            <div className="flex items-center p-4 gap-8 w-full ">
+              <div>
+                <TbTruckDelivery className="text-4xl " />
               </div>
-            )}
+              <div>
+                <h4 className="text-2xl">Free Delivery</h4>
+                <p className="underline">Enter your postal code for Delivery Availability</p>
+              </div>
+            </div>
+            <hr className=" opacity-60" />
+            <div className="flex items-center p-4 gap-8 w-full">
+              <div>
+                <TbTruckReturn className="text-4xl " />
+              </div>
+              <div>
+                <h4 className="text-2xl">Return Delivery</h4>
+                <p>
+                  Free 30 Days Delivery Returns. <span className="underline">Details</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

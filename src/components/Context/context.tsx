@@ -9,11 +9,9 @@ export interface Product {
   PriceReduction: string;
   rating: number;
   Quantity: number;
-    imgProdects?: {
-    [color: string]: string[];
-  };
   orderedQuantity?: number;
   orderedSubtotal?: number;
+  color?: string;
 }
 
 interface ShopContextType {

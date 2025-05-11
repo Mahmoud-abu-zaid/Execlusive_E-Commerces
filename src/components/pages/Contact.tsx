@@ -44,8 +44,8 @@ export default function Contact() {
   const dir = localStorage.getItem("pageDirection");
   return (
     <>
-      <div className="px-10 my-8">
-        <div className="py-4">
+      <div className="sm:px-10 my-8">
+        <div className="py-4 px-6">
           <Link to="/" className="text-gray-600">
             {t("Home")}
           </Link>

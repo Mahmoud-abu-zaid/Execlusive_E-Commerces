@@ -17,7 +17,7 @@ export default function SideBar() {
   ];
   return (
     <>
-      <div className={`border-[#d0d0d0] w-fit  ${ borderDirection === "rtl" ? " border-l-2" : " border-r-2"}`}>
+      <div className={`border-[#d0d0d0] w-fit lg:block hidden ${ borderDirection === "rtl" ? " border-l-2" : " border-r-2"}`}>
         <ul className="py-[30px] px-10 w-[270px]">
           {sideBarLinks.map((link, index) => (
             <li className="p-2" key={index}>

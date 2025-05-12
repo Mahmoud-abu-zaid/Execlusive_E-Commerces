@@ -19,7 +19,7 @@ export default function Slider() {
         <div className="relative ">
           <div className="flex overflow-hidden">
             <div className=" min-w-[100%]">
-              <img className="w-[892px] h-[344px]" src={sliderImg[curruntSlide].src} alt={sliderImg[curruntSlide].alt} />
+              <img className="lg:w-[892px] lg:h-[344px] sm:h-[300px] h-[200px]" src={sliderImg[curruntSlide].src} alt={sliderImg[curruntSlide].alt} />
             </div>
 
             <div className=" absolute  flex justify-center items-end bottom-3 gap-4 w-full h-full">
@@ -28,8 +28,8 @@ export default function Slider() {
                   return (
                     <li
                       onClick={() => navigationPoints(index)}
-                      className={`w-[13px] h-[13px] rounded-lg cursor-pointer
-                       ${index === curruntSlide ? " border-2 border-white bg-[#DB4444]" : "bg-[#808080]"}`}
+                      className={`sm:w-[13px] w-[11px] sm:h-[13px] h-[11px] rounded-lg cursor-pointer
+                       ${index === curruntSlide ? " sm:border-2 border-[1px] border-white bg-[#DB4444]" : "bg-[#808080]"}`}
                     ></li>
                   );
                 })}

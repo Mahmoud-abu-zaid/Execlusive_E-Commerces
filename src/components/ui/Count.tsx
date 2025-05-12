@@ -72,15 +72,15 @@ export default function Count({ tergetDate, storageKey }: CountProps) {
   const hasTime = remainingTime.days > 0 || remainingTime.hours > 0 || remainingTime.minutes > 0 || remainingTime.seconds > 0;
 
   return (
-    <div className="flex justify-between">
-      <div className="flex justify-around my-5">
+    <div className="flex justify-between  ">
+      <div className="flex justify-around flex-wrap my-5">
         <div>
           <h2 className="m-6 text-[36px]">
             <b>{t("Flash Sales")}</b>
           </h2>
         </div>
         {hasTime && (
-          <ul className="flex items-center gap-5">
+          <ul className="flex items-center sm:gap-5 gap-3">
             <div className="block text-center">
               <span className="font-bold text-[15px]">{t("Days")}</span>
               <li className="text-[32px]">

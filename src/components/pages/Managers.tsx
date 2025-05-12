@@ -61,7 +61,7 @@ export default function Managers() {
             <div key={index} className="flex-shrink-0 px-3" style={{ width: `${100 / cardsToShow}%` }}>
               <div className="flex flex-col justify-center">
                 <div className="max-w-full h-[430px] flex justify-center items-end bg-gray-200">
-                  <img className="w-[280px] sm:w-[380px] h-[370px] " src={manager.imgManag} alt={manager.nameManag} />
+                  <img className="w-[230px] sm:w-[300px] h-[370px] " src={manager.imgManag} alt={manager.nameManag} />
                 </div>
                 <div className="mx-3 flex flex-col lg:items-start items-center">
                   <p className="py-2 text-3xl">{manager.nameManag}</p>

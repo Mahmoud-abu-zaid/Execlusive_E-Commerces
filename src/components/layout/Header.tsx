@@ -31,7 +31,6 @@ export default function Header({ local }: { local: string }) {
     toast.success(t("Successfully logged out"));
   }
 
-  
   const showMenustyle = showMenu ? "block" : "hidden";
 
   return (
@@ -46,29 +45,43 @@ export default function Header({ local }: { local: string }) {
         <div className="flex ">
           <div>
             <IoMenu onClick={() => setShowMenu((state) => !state)} className="lg:hidden text-[30px] cursor-pointer" />
-            <ul className={`${showMenustyle} lg:flex lg:items-center lg:static absolute ${local === "ar" ? "left-[27%]" : "right-[27%]"}  lg:bg-white bg-black rounded-xl lg:w-fit text-white p-2 z-10`}>
+            <ul
+              className={`${showMenustyle} lg:flex lg:items-center lg:static absolute ${local === "ar" ? "left-[27%]" : "right-[27%]"}  lg:bg-white bg-black rounded-xl lg:w-fit text-white p-2 z-10`}
+            >
               <li className="my-2 lg:my-0 hover:bg-main-color lg:hover:bg-white rounded p-1">
-                <NavLink className={({ isActive }) => `flex items-center gap-3 px-3  text-white lg:text-black  pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `} to="/">
+                <NavLink
+                  className={({ isActive }) => `flex items-center gap-3 px-3  text-white lg:text-black  pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `}
+                  to="/"
+                >
                   <IoHomeOutline className="text-[20px] lg:hidden block" />
                   {t("Home")}
                 </NavLink>
               </li>
               <li className="my-2 lg:my-0  hover:bg-main-color lg:hover:bg-white rounded p-1">
-                <NavLink className={({ isActive }) => ` flex items-center gap-3 px-3 text-white lg:text-black pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `} to="/Contact">
-                   <MdContactPhone className="text-[20px] lg:hidden block"/>
+                <NavLink
+                  className={({ isActive }) => ` flex items-center gap-3 px-3 text-white lg:text-black pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `}
+                  to="/Contact"
+                >
+                  <MdContactPhone className="text-[20px] lg:hidden block" />
                   {t("Contact")}
                 </NavLink>
               </li>
               <li className="my-2 lg:my-0   hover:bg-main-color lg:hover:bg-white rounded p-1">
-                <NavLink className={({ isActive }) => `flex items-center px-3 gap-3 text-white lg:text-black pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `} to="/About">
-                <MdRoundaboutRight className="text-[20px] lg:hidden block"/>
+                <NavLink
+                  className={({ isActive }) => `flex items-center px-3 gap-3 text-white lg:text-black pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `}
+                  to="/About"
+                >
+                  <MdRoundaboutRight className="text-[20px] lg:hidden block" />
                   {t("About")}
                 </NavLink>
               </li>
               {!user && (
                 <li className="my-2 lg:my-0  hover:bg-main-color lg:hover:bg-white rounded p-1">
-                  <NavLink className={({ isActive }) => `flex items-center gap-3 px-3 text-white lg:text-black pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `} to="/SignUp">
-                    <SiGnuprivacyguard className="text-[20px] lg:hidden block"/>
+                  <NavLink
+                    className={({ isActive }) => `flex items-center gap-3 px-3 text-white lg:text-black pb-[3px] ${isActive ? "lg:border-b-2 border-white lg:border-black" : "border-none"} `}
+                    to="/SignUp"
+                  >
+                    <SiGnuprivacyguard className="text-[20px] lg:hidden block" />
                     {t("Sign Up")}
                   </NavLink>
                 </li>

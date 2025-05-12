@@ -102,7 +102,7 @@ export default function ProductsFlashSales() {
 
   return (
     <>
-      <div className="flex  justify-between items-center gap-3  mb-6 px-4">
+      <div className="flex justify-end md:justify-between items-center flex-wrap md:gap-3 gap-5  mb-6 px-4">
         <Count
           tergetDate={{
             days: 3,
@@ -112,7 +112,8 @@ export default function ProductsFlashSales() {
           }}
           storageKey="flashSale1"
         />
-        <div className="flex gap-3">
+
+        <div className="flex  gap-3">
           <button onClick={dir === "rtl" ? handleNext : handleBack} className="bg-gray-300 text-black rounded-full p-3 cursor-pointer hover:bg-gray-400 transition">
             <FaArrowLeft className={`transition-transform ${dir === "rtl" ? "rotate-180" : ""}`} />
           </button>

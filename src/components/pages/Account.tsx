@@ -24,7 +24,7 @@ export default function Account() {
             </h3>
           </div>
         </div>
-        <div className="flex ">
+        <div className="flex justify-between">
           <div className="flex flex-col gap-4">
             <h3>Manage My Account</h3>
             <div className="px-5 flex flex-col">
@@ -39,45 +39,39 @@ export default function Account() {
             </div>
             <h3>My WishList</h3>
           </div>
-          <div>
-            <form className="shadow">
+          <div className="w-[80%]">
+            <form className="shadow p-3 py-4 mb-5">
+              <div className="flex  gap-3">
+                <div className="w-full">
+                  <label className="block mx-3">First Name</label>
+                  <input type="text" minLength={1} className="bg-[#f5f5f5]  w-[95%] m-3  p-2 rounded" />
+                </div>
+                <div className="w-full">
+                  <label className="block mx-3   ">Last Name</label>
+                  <input type="text" minLength={1} className="bg-[#f5f5f5]  w-[95%] m-3 p-2 rounded" />
+                </div>
+              </div>
               <div className="flex gap-3">
-                <div>
-                  <label className="block">First Name</label>
-                  <input type="text" className="bg-[#f5f5f5]" />
+                <div className="w-full">
+                  <label className="block mx-3 ">Email</label>
+                  <input type="email" className="bg-[#f5f5f5] w-[95%] m-3 p-2 rounded " />
                 </div>
-                <div>
-                  <label className="block  ">Last Name</label>
-                  <input type="text" className="bg-[#f5f5f5]" />
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <div>
-                  <label className="block">Email</label>
-                  <input type="email" className="bg-[#f5f5f5]" />
-                </div>
-                <div>
-                  <label className="block">Address</label>
-                  <input type="text" className="bg-[#f5f5f5]" />
+                <div className="w-full">
+                  <label className="block mx-3 ">Address</label>
+                  <input type="text" className="bg-[#f5f5f5] w-[95%] m-3 p-2 rounded " />
                 </div>
               </div>
-              <div className="flex flex-col gap-3  ">
+              <div className="flex flex-col gap-2  ">
                 <div>
-                  <label className="block">Current Passwod</label>
-                  <input type="email" className="bg-[#f5f5f5]" placeholder="Current Passwod" />
-                </div>
-                <div>
-                  <label className="block">New Passwod</label>
-                  <input type="email" className="bg-[#f5f5f5]" placeholder="New Passwod" />
-                </div>
-                <div>
-                  <label className="block">Confirm New Passwod</label>
-                  <input type="email" className="bg-[#f5f5f5]" placeholder="Current Passwod" />
+                  <label className="block mx-3">Password Changes</label>
+                  <input type="email" className="bg-[#f5f5f5] w-[97%] m-3 p-2 rounded" minLength={8} placeholder="Current Passwod" />
+                  <input type="email" className="bg-[#f5f5f5] w-[97%] m-3 p-2 rounded" minLength={8} placeholder="New Passwod" />
+                  <input type="email" className="bg-[#f5f5f5] w-[97%] m-3 p-2 rounded" minLength={8} placeholder="Confirm New Password" />
                 </div>
               </div>
-              <div className="flex gap-4">
+              <div className="flex justify-end gap-6 mx-6 my-2">
                 <button>Cancel</button>
-                <button>Save Changes</button>
+                <button className="px-5 py-2 bg-main-color rounded text-white">Save Changes</button>
               </div>
             </form>
           </div>

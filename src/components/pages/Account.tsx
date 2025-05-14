@@ -128,10 +128,12 @@ export default function Account() {
 
           <div className="">
             <h3>
-              {t("Welcome!")}{" "}
-              <span className="text-main-color">
-                {storedUser.firstName} {storedUser.lastName}{" "}
-              </span>
+              Welcome!
+              {storedUser && (
+                <span className="text-main-color">
+                  {storedUser.firstName} {storedUser.lastName}
+                </span>
+              )}
             </h3>
           </div>
         </div>

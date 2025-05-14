@@ -48,18 +48,19 @@ export default function Account() {
 
   function accountData() {
     if (inputForm.NewPassword !== inputForm.ConfirmNewPassword) {
-      toast.error("New passwords do not match");
+      toast.error(t("New passwords do not match"));
       return;
     }
 
     if (user?.password && inputForm.CurrentPassword !== user.password) {
-      toast.error("Current password is incorrect");
+      toast.error(t("Current password is incorrect"));
       return;
     }
 
     const allUsers = JSON.parse(localStorage.getItem("Data For User") || "[]");
 
     if (!user) {
+      toast.error(t("error"));
       return;
     }
 
@@ -80,7 +81,7 @@ export default function Account() {
 
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
-    toast.success("Data saved successfully");
+    toast.success(t("Data saved successfully"));
 
     setInputForm((prev) => ({
       ...prev,
@@ -105,7 +106,7 @@ export default function Account() {
         NewPassword: "",
         ConfirmNewPassword: "",
       }));
-      toast.success("Cancel to update");
+      toast.success(t("Cancel to update"));
     }
   }
 
@@ -127,7 +128,7 @@ export default function Account() {
 
           <div className="">
             <h3>
-              Welcome!{" "}
+              {t("Welcome!")}{" "}
               <span className="text-main-color">
                 {storedUser.firstName} {storedUser.lastName}{" "}
               </span>
@@ -136,18 +137,18 @@ export default function Account() {
         </div>
         <div className="flex justify-between">
           <div className="hidden sm:flex flex-col gap-4">
-            <h3>Manage My Account</h3>
+            <h3>{t("Manage My Account")}</h3>
             <div className="px-5 flex flex-col">
-              <Link to="/Account">My Profile</Link>
-              <Link to="/Account">Address Book</Link>
-              <Link to="/Account">My Payment Options</Link>
+              <Link to="/Account">{t("My Profile")}</Link>
+              <Link to="/Account">{t("Address Book")}</Link>
+              <Link to="/Account">{t("My Payment Options")} </Link>
             </div>
-            <h3>My Orders</h3>
+            <h3>{t("My Orders")}</h3>
             <div className="px-5 flex flex-col">
-              <Link to="/">My Returns</Link>
-              <Link to="/">My Cancellations</Link>
+              <Link to="/">{t("My Returns")}</Link>
+              <Link to="/">{t("My Cancellations")}</Link>
             </div>
-            <h3>My WishList</h3>
+            <h3>{t("My WishList")}</h3>
           </div>
           <div className="w-full sm:w-[80%]">
             <form
@@ -158,11 +159,11 @@ export default function Account() {
               className="shadow p-3 py-4 mb-5"
             >
               <div className="m-3 text-xl text-main-color">
-                <h2>Edit Your Profile</h2>
+                <h2>{t("Edit Your Profile")}</h2>
               </div>
               <div className="flex sm:flex-nowrap flex-wrap  gap-3">
                 <div className="w-full">
-                  <label className="block mx-3">First Name</label>
+                  <label className="block mx-3">{t("First Name")}</label>
                   <input
                     onChange={(e) => setInputForm({ ...inputForm, firstName: e.target.value })}
                     value={inputForm.firstName}
@@ -173,7 +174,7 @@ export default function Account() {
                   />
                 </div>
                 <div className="w-full">
-                  <label className="block mx-3">Last Name</label>
+                  <label className="block mx-3">{t("Last Name")}</label>
                   <input
                     value={inputForm.lastName}
                     onChange={(e) => setInputForm({ ...inputForm, lastName: e.target.value })}
@@ -186,7 +187,7 @@ export default function Account() {
               </div>
               <div className="flex sm:flex-nowrap flex-wrap gap-3">
                 <div className="w-full">
-                  <label className="block mx-3 ">Email</label>
+                  <label className="block mx-3 ">{t("Email")}</label>
                   <input
                     type="email"
                     value={inputForm.emailOrPhoneNumber}
@@ -196,20 +197,20 @@ export default function Account() {
                   />
                 </div>
                 <div className="w-full">
-                  <label className="block mx-3 ">Address</label>
+                  <label className="block mx-3 ">{t("Address")}</label>
                   <input value={inputForm.address} onChange={(e) => setInputForm({ ...inputForm, address: e.target.value })} type="text" className="bg-[#f5f5f5] w-[95%] m-3 p-2 rounded " required />
                 </div>
               </div>
               <div className="flex flex-col gap-2  ">
                 <div>
-                  <label className="block mx-3">Password Changes</label>
+                  <label className="block mx-3">{t("Password Changes")}</label>
                   <input
                     type="password"
                     value={inputForm.CurrentPassword}
                     onChange={(e) => setInputForm({ ...inputForm, CurrentPassword: e.target.value })}
                     className="bg-[#f5f5f5] w-[97%] m-3 p-2 rounded"
                     minLength={8}
-                    placeholder="Current Passwod"
+                    placeholder={t("Current Passwod")}
                   />
                   <input
                     type="password"
@@ -217,7 +218,7 @@ export default function Account() {
                     onChange={(e) => setInputForm({ ...inputForm, NewPassword: e.target.value })}
                     className="bg-[#f5f5f5] w-[97%] m-3 p-2 rounded"
                     minLength={8}
-                    placeholder="New Passwod"
+                    placeholder={t("New Passwod")}
                   />
                   <input
                     type="password"
@@ -225,14 +226,14 @@ export default function Account() {
                     onChange={(e) => setInputForm({ ...inputForm, ConfirmNewPassword: e.target.value })}
                     className="bg-[#f5f5f5] w-[97%] m-3 p-2 rounded"
                     minLength={8}
-                    placeholder="Confirm New Password"
+                    placeholder={t("Confirm New Password")}
                   />
                 </div>
               </div>
               <div className="flex justify-end gap-6 mx-6 my-2">
-                <button onClick={handleCancel}>Cancel</button>
+                <button onClick={handleCancel}>{t("Cancel")}</button>
                 <button className="px-5 py-2 bg-main-color rounded text-white" type="submit">
-                  Save Changes
+                  {t("Save Changes")}
                 </button>
               </div>
             </form>

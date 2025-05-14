@@ -4,36 +4,22 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
+import { useUser } from "../../Context/context";
 
 interface User {
   id: string;
   name: string;
   emailOrPhoneNumber: string;
   password: string;
-
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  address?: string;
-
-  reviews?: [];
-  collection?: [];
 }
 export default function SignUp() {
+  const { setUser } = useUser();
   const [formInput, setFormInput] = useState<User>({
     id: uuidv4(),
 
     name: "",
     emailOrPhoneNumber: "",
     password: "",
-
-    firstName: "",
-    lastName: "",
-    email: "",
-    address: "",
-
-    reviews: [],
-    collection: [],
   });
 
   const navigate = useNavigate();
@@ -44,12 +30,13 @@ export default function SignUp() {
     const newUser = [...users, formInput];
 
     setUsers(newUser);
-
     localStorage.setItem("Data For User", JSON.stringify(newUser));
+    localStorage.setItem("user", JSON.stringify(formInput)); // حفظ المستخدم في localStorage
+    setUser(formInput); 
 
     toast.success(t("Account registration successful"));
-
     setFormInput({ ...formInput, name: "", emailOrPhoneNumber: "", password: "" });
+
     navigate("/SignIn");
   }
   const { t } = useTranslation();

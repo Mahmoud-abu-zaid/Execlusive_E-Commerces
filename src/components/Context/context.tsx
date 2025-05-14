@@ -14,6 +14,32 @@ export interface Product {
   color?: string;
 }
 
+export interface User {
+  id?: string;
+  name?: string;
+  emailOrPhoneNumber?: string;
+  password?: string;
+
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  address?: string;
+
+  newPassword?: string;
+}
+
+interface UserContext {
+  user: User | null;
+  setUser: (user: User) => void;
+}
+export const UserContext = createContext<UserContext | undefined>(undefined);
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) throw new Error("useUser must be used within UserProvider");
+  return context;
+};
+
 interface ShopContextType {
   wishlist: Product[];
   addToWishlist: (product: Product) => void;
@@ -47,6 +73,7 @@ export const ShopContext = createContext<ShopContextType>({
   orders: [],
   addOrder: () => {},
 });
+
 export const useShop = () => useContext(ShopContext);
 
 interface ProviderProps {
@@ -59,6 +86,9 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<Product[]>([]);
 
   const [orders, setOrders] = useState<Product[]>([]);
+
+  const [user, setUser] = useState<User | null>(null);
+
   useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
     if (storedWishlist) {
@@ -156,25 +186,27 @@ export const ShopProvider: React.FC<ProviderProps> = ({ children }) => {
   };
 
   return (
-    <ShopContext.Provider
-      value={{
-        wishlist,
-        addToWishlist,
-        removeFromWishlist,
-        clearWishlist,
-        isInWishlist,
-        cart,
-        addToCart,
-        removeCart,
-        isCart,
-        quantities,
-        updateQuantity,
-        subtotal,
-        orders,
-        addOrder,
-      }}
-    >
-      {children}
-    </ShopContext.Provider>
+    <>
+      <ShopContext.Provider
+        value={{
+          wishlist,
+          addToWishlist,
+          removeFromWishlist,
+          clearWishlist,
+          isInWishlist,
+          cart,
+          addToCart,
+          removeCart,
+          isCart,
+          quantities,
+          updateQuantity,
+          subtotal,
+          orders,
+          addOrder,
+        }}
+      >
+        <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
+      </ShopContext.Provider>
+    </>
   );
 };

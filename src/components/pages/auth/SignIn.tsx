@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { useUser } from "../../Context/context";
 
 interface User {
   id: string;
@@ -13,9 +14,6 @@ interface User {
   lastName?: string;
   email?: string;
   address?: string;
-  orders?: [];
-  reviews?: [];
-  collection?: [];
 }
 interface FormInput {
   emailOrPhoneNumber: string;
@@ -24,6 +22,8 @@ interface FormInput {
 
 export default function SignIn() {
   const { t } = useTranslation();
+
+  const { setUser } = useUser();
 
   const navigator = useNavigate();
 
@@ -35,18 +35,20 @@ export default function SignIn() {
   function login() {
     const users: User[] = JSON.parse(localStorage.getItem("Data For User") || "[]");
 
-    const userExist = users.find((user: User) => {
+    const userExist = users.find((user) => {
       if (user.emailOrPhoneNumber === formInput.emailOrPhoneNumber && user.password === formInput.password) {
+        // حفظ المستخدم في localStorage و context
         localStorage.setItem("userId", user.id);
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser(user); // تحديث context
         return user;
-        
       }
     });
     if (userExist) {
-      toast.success(t("Login successfully"))
+      toast.success(t("Login successfully"));
       navigator("/");
-    }else{
-      toast.error(t("There is an error. Try again."))
+    } else {
+      toast.error(t("There is an error. Try again."));
     }
   }
 

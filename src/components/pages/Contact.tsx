@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BsTelephoneInbound } from "react-icons/bs";
 import { FaCommentDots, FaXmark } from "react-icons/fa6";
 import { IoMailOutline } from "react-icons/io5";
 import { Link } from "react-router";
-
+import emailjs from "emailjs-com";
+import { toast } from "react-toastify";
 interface ContactMassage {
   Name: string;
   Email: string;
@@ -14,7 +15,7 @@ interface ContactMassage {
 
 export default function Contact() {
   const { t } = useTranslation();
-
+  const ContectUser = useRef<HTMLFormElement>(null);
   const [submittedData, setSubmittedData] = useState<ContactMassage[]>([]);
   const [formInputMassage, setFormInputMassage] = useState<ContactMassage>({
     Name: "",
@@ -26,9 +27,22 @@ export default function Contact() {
     const newMassege = [...submittedData, formInputMassage];
     setSubmittedData(newMassege);
     localStorage.setItem("MassagesContect", JSON.stringify(newMassege));
+
+    if (ContectUser.current) {
+      emailjs
+        .sendForm("service_03983cq", "template_s3sm64n", ContectUser.current, "tDgF_MwIeJrOyta13")
+        .then(() => {
+          toast.success(t("Your application has been successfully submitted"));
+        })
+        .catch(() => {
+          toast.error(t("An error occurred, please resend the message"));
+        });
+    }
+
     setFormInputMassage({ Name: "", Email: "", Phone: "", Massage: "" });
     console.log("date", formInputMassage);
   }
+
   useEffect(() => {
     const saved = localStorage.getItem("MassagesContect");
     if (saved) {
@@ -77,11 +91,16 @@ export default function Contact() {
               <br />
               {t("you within 24 hours.")}
             </p>
-            <p className="py-3">{t("Emails")}: {t("customer@exclusive.com")}</p>
-            <p>{t("Emails")}: {t("support@exclusive.com")}</p>
+            <p className="py-3">
+              {t("Emails")}: {t("customer@exclusive.com")}
+            </p>
+            <p>
+              {t("Emails")}: {t("support@exclusive.com")}
+            </p>
           </div>
           <div className="shadow h-[100%] py-7 pb-2 px-6 flex flex-col gap-4">
             <form
+              ref={ContectUser}
               onSubmit={(e) => {
                 e.preventDefault();
                 yourMassage();
@@ -93,6 +112,7 @@ export default function Contact() {
                   onChange={(e) => setFormInputMassage({ ...formInputMassage, Name: e.target.value })}
                   className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
                   type="text"
+                  name="user_name"
                   required
                   placeholder={t("Your Name")}
                 />
@@ -102,6 +122,7 @@ export default function Contact() {
                   className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
                   type="email"
                   required
+                  name="user_email"
                   placeholder={t("Your Email")}
                 />
                 <input
@@ -110,15 +131,16 @@ export default function Contact() {
                   className="p-2 w-[99%] bg-[#F5F5F5] outline-0"
                   type="tel"
                   required
+                  name="user_phone"
                   placeholder={t("Your Phone")}
                 />
               </div>
               <div className="flex justify-center items-center w-full h-full my-3 rounded">
                 <textarea
+                  name="message"
                   value={formInputMassage.Massage}
                   onChange={(e) => setFormInputMassage({ ...formInputMassage, Massage: e.target.value })}
                   className="p-[8px] w-full h-full  outline-0 bg-[#F5F5F5] "
-                  name=""
                   id=""
                   placeholder={t("Your Massage")}
                   minLength={20}
@@ -126,7 +148,7 @@ export default function Contact() {
               </div>
               <div className="flex justify-end py-4">
                 <button type="submit" className={`${formInputMassage.Massage.length === 0 ? "bg-gray-200 cursor-no-drop text-black" : "bg-main-color text-white cursor-pointer"} py-3 px-6  rounded `}>
-                 {t("Send Massage")} 
+                  {t("Send Massage")}
                 </button>
               </div>
             </form>

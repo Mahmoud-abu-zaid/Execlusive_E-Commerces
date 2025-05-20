@@ -37,10 +37,9 @@ export default function SignIn() {
 
     const userExist = users.find((user) => {
       if (user.emailOrPhoneNumber === formInput.emailOrPhoneNumber && user.password === formInput.password) {
-        // حفظ المستخدم في localStorage و context
         localStorage.setItem("userId", user.id);
         localStorage.setItem("user", JSON.stringify(user));
-        setUser(user); // تحديث context
+        setUser(user);
         return user;
       }
     });

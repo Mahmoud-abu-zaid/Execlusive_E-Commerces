@@ -216,6 +216,10 @@
   "Edit Your Profile": "تعديل ملفك الشخصي",
   "Your order has been successfully submitted": "تم إرسال طلبك بنجاح",
   "An error occurred, please resend the message": "حدث خطأ، يرجى إعادة إرسال الرسالة",
-  "must enter your password":"يجب إدخال كلمة المرور الخاصة بك",
-  "must enter your email":"يجب إدخال بريدك الإلكتروني"
+  "Must enter your password": "يجب إدخال كلمة المرور الخاصة بك",
+  "Must enter your email": "يجب إدخال بريدك الإلكتروني",
+  "Invalid email format": "  تنسيق البريد الإلكتروني غير صالح",
+  "Password must be 8 to 20 characters, no typing of these symbols is allowed [!^&*_=+- ]": "يجب أن تتكون كلمة المرور من 8 إلى 20 حرفًا، ولا يُسمح بكتابة هذه الرموز [!^&*_=+-]",
+  "The maximum character limit is 20 char": "الحد الأقصى لعدد الأحرف هو 20 حرفاً",
+  "The minimum number of characters is 8": "الحد الأدنى لعدد الأحرف هو 8 أحرف"
 }

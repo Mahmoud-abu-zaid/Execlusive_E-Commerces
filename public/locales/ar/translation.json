@@ -215,5 +215,7 @@
   "New passwords do not match": " كلمات المرور الجديدة غير مطابقة",
   "Edit Your Profile": "تعديل ملفك الشخصي",
   "Your order has been successfully submitted": "تم إرسال طلبك بنجاح",
-  "An error occurred, please resend the message": "حدث خطأ، يرجى إعادة إرسال الرسالة"
+  "An error occurred, please resend the message": "حدث خطأ، يرجى إعادة إرسال الرسالة",
+  "must enter your password":"يجب إدخال كلمة المرور الخاصة بك",
+  "must enter your email":"يجب إدخال بريدك الإلكتروني"
 }
